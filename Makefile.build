@@ -1,0 +1,68 @@
+PHONY := __build  # 特殊目标.PHONY的依赖是假想目标。假想目标是这样一些目标，make 无条件的执行它命令，和目
+                  # 录下是否存在该文件以及它最后一次更新的时间没有关系
+__build:
+obj-y :=
+subdir-y :=
+
+include Makefile	# 包含当前目录下的 Makefile 文件
+# 下面注释是一个小例子
+# obj-y := a.o b.o c/ d/
+# $(filter %/, $(obj-y))   : c/ d/
+# __subdir-y  : c d
+# subdir-y    : c d
+# patsubst函数用法：
+# 		$(patsubst A, B, C ) 即从Ｃ种找到符合[A]模式的单词替换成[B]的模式
+#		$(patsubst %.c, %.o, x.c.c bar.c) 
+#			即把字符串"x.c.c
+#			bar.c"符合模式[%.c]的单词替换成[%.o],返回结果是“%.c.o bar.o”
+# filter函数用法：
+# 	$(filter <pattern....>, <text>)
+# 		功能:以<pattern>模式过滤<text>字符串中的单词,保留符合模式<pattern>的单词。可以有多个模式
+
+#获得根目录下的文件夹名称，如display/变成display 
+__subdir-y := $(patsubst %/,%,$(filter %/,$(obj-y)))     
+subdir-y   += $(__subdir-y)
+
+# subdir_objs ：= c/built-in.o d/built-in.o	
+# 遍历获得所有子目标下生成 built-in.o 
+subdir_objs := $(foreach f,$(subdir-y),$(f)/built-in.o)  
+
+# 获得子 makefile 中添加的 obj-y 中所有文件名，如 crt.o 经过这个处理就成了 crt 
+# a.o b.o
+cur_objs := $(filter-out %/, $(obj-y))					    
+# 根据文件名，转换成 .【文件名】.d 的依赖文件，如 .crt.d
+dep_files := $(foreach f,$(cur_objs),.$(f).d) //.main.o.d			
+# 判断这些文件是否存在
+dep_files := $(wildcard $(dep_files))					
+
+# 如果这些依赖文件存在，说明不是第一次编译，包括进来
+ifneq ($(dep_files),)									
+	include $(dep_files)
+endif
+
+
+# PHONY = 子目录名
+PHONY += $(subdir-y)									
+
+# __build 依赖于 子目标 及 built-in.o
+__build : $(subdir-y) built-in.o						
+
+# 对于 subdir-y 这具目标文件，递归调用 Makefile.build 的 make 文件处理
+$(subdir-y):											
+	make -C $@ -f $(TOPDIR)/Makefile.build					
+
+# 对于当前目录的目标文件 built-in.o ，使用当前目录下 .c 生成的 .o 文件生成
+built-in.o : $(cur_objs) $(subdir_objs)				
+
+	$(LD) -r -o $@ $^  #依赖于当然目录下的%.o和子目录下的build-in.o
+
+# 要生成的依赖文件是以所有文件名单独命令的，如 .crt.d .utf-16be.d 等等，dep_file = 这些名字
+dep_file = .$@.d		 #在	$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<	种才正式运行，所以dep_file = .%.o.d									
+
+# 对所有 .c 文件，都生成对应的 .o 文件
+# 依次生成各个目标 .o 文件以及依赖文件 
+%.o : %.c	
+	@echo $()
+	$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<		
+
+.PHONY : $(PHONY)
