@@ -33,5 +33,5 @@ target_lib :=
 
 # target sample:
  target_app += sample
-target_lib += sample/libhello
+#target_lib += sample/libhello
 # target_lib += sample/libptree

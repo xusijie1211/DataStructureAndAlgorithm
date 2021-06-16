@@ -1,0 +1,3 @@
+ifeq (-Os -Wall -g -I/Users/user/Desktop/DataStructureAndAlgorithm/include -I/Users/user/Desktop/DataStructureAndAlgorithm/include :,$(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_01_Sort.o))))
+FILES_FLAGS_UP_TO_DATE += /Users/user/Desktop/DataStructureAndAlgorithm/build/sample/sort/01_Sort.o
+endif

@@ -8,7 +8,8 @@ EXTRA_CFLAGS :=
 EXTRA_LDFLAGS :=
 
 # target modules.
-target_modules := hello libhello
+target_modules := sort
+# hello libhello 
 
 
 #

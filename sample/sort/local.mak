@@ -7,7 +7,7 @@
 # Module app name
 # APP output file name, that will installed into system bin dir.
 #
-APP_TARGET = forktest
+APP_TARGET = sort
 
 # Module extra FLAGS.
 EXTRA_CFLAGS :=
