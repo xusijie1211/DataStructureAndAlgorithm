@@ -34,6 +34,8 @@ void swap(SqList *L,int i,int j)
 void print(SqList L)
 {
 	int i;
+
+	printf("L[%d]:", L.length);
 	for(i=1;i<L.length;i++)
 		printf("%d,",L.r[i]);
 	printf("%d",L.r[i]);
