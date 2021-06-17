@@ -192,6 +192,8 @@ void HeapSort(SqList *L)
 void Merge(int SR[],int TR[],int i,int m,int n)
 {
     int j,k,l;
+
+    DEBUG("i = %d m= %d n= %d", i, m, n);
     for(j=m+1,k=i;i<=m && j<=n;k++)    /* 将SR中记录由小到大地并入TR */
     {
         if (SR[i]<SR[j])
@@ -209,6 +211,15 @@ void Merge(int SR[],int TR[],int i,int m,int n)
         for(l=0;l<=n-j;l++)
             TR[k+l]=SR[j+l];        /* 将剩余的SR[j..n]复制到TR */
     }
+
+    for (i = 0; i < sizeof(TR); i++ ) {
+        printf("%d ", TR[i]);
+    }
+    printf("\n");
+    for (i = 0; i < sizeof(SR); i++ ) {
+        printf("%d ", SR[i]);
+    }
+    printf("\n");
 }
 
 
@@ -371,13 +382,14 @@ void QuickSort1(SqList *L)
 }
 
 /* **************************************** */
-#define N 8
+#define N 9
 int main()
 {
    int i;
    
    //int d[N]={9,1,5,8,3,7,4,6,2}; 
-	int d[N]={8,4,5,7,1,3,6,2}; 
+//	int d[N]={8,4,5,7,1,3,6,2}; 
+	int d[N]={50,10,90,30,70,40,80,60,20};
    //int d[N]={50,30,90,10,70,40,80,60,20};
    /* int d[N]={9,8,7,6,5,4,3,2,1}; */
 
