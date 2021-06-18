@@ -32,4 +32,5 @@ target_lib :=
 #
 
 # target sample:
-target_app += sample
+#target_app += LinkList
+target_app += Stack
