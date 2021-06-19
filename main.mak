@@ -16,8 +16,7 @@ extra_alibs :=
 extra_solibs :=
 
 # All the target applications to be compiled.
-target_app :=
-
+target_app := sample/libptree
 # Install only target.
 #target_app += version extrabuild
 
@@ -33,4 +32,4 @@ target_lib :=
 
 # target sample:
 #target_app += LinkList
-target_app += Stack
+target_app += Trees

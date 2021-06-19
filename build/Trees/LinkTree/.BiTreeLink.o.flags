@@ -1,0 +1,3 @@
+ifeq (-Os -Wall -g -I/home/ubuntu/samb/DataStructureAndAlgorithm/include -I/home/ubuntu/samb/DataStructureAndAlgorithm/include :,$(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_BiTreeLink.o))))
+FILES_FLAGS_UP_TO_DATE += /home/ubuntu/samb/DataStructureAndAlgorithm/build/Trees/LinkTree/BiTreeLink.o
+endif

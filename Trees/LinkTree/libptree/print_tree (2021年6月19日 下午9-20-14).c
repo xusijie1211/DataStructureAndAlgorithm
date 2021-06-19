@@ -1,8 +1,27 @@
-//Designed By Dark http://blog.csdn.net/xzongyuan
-#include "print_tree.h"
-#include "build_tree.h"
-//use breath travel
-int print_tree(Tree pRoot,Queue *pQueue)
+#include <stdio.h>    
+#include <string.h>
+#include <ctype.h>      
+#include <stdlib.h>   
+#include <math.h>  
+#include <time.h>
+#include <sort.h>
+#include <Trees/LinkTree.h>
+
+int get_tree_height(BiTree T)
+{
+  int lh = 0,rh = 0;
+
+  if (!T) {
+    return 0; 
+  }
+
+  lh = get_tree_height(T->lchild);
+  rh = get_tree_height(T->rchild);
+
+  return (lh<rh)?(rh+1):(lh+1);
+}
+
+int breath_travel(BiTree pRoot,Queue *pQueue)
 {
    int height = get_tree_height(pRoot);
    int pad_num = 2;
@@ -12,7 +31,7 @@ int print_tree(Tree pRoot,Queue *pQueue)
    char blank[30]="                             "; 
    //you can cut it down for the branch
    //when I debug, I found the size can't be too large
-   //when I set as 50, it break down.
+   //when I set it as 50, it break down.
    char line[30]="______________________________"; 
 
 
@@ -37,9 +56,17 @@ int print_tree(Tree pRoot,Queue *pQueue)
      if(qNode->depth > current_depth)
      {
          current_depth = qNode->depth;
-	 printf("%s\n",buf_branch);
+         printf("%s\n",buf_branch);
          sprintf(buf_branch,"\n");  //reset the buffer after print
      }
+// ***************0****************  pad_between = 31 ; pad_front = 15  (depth == 1)
+// *******0***************0********  pad_between = 15 ; pad_front = 7   (depth == 2)
+// ***0*******0*******0*******0****  pad_between = 7  ; pad_front = 3   (depth == 3)
+// *0***0***0***0***0***0***0***0**  pad_between = 3  ; pad_front = 1   (depth == 4)
+// 0*0*0*0*0*0*0*0*0*0*0*0*0*0*0*0*  pad_between = 1  ; pad_front = 0;  (depth == 5)
+// Tree height = 5
+// pad_num = 1
+// padding between node = (1+2*pad_front)*pad_num = (1+ (1<<(height-depth))-1)*pad_num
     
      int pad_front = (1<< (height - current_depth))-1;
      int pad_blank = (pad_front-1)>>1;
@@ -94,5 +121,3 @@ int print_tree(Tree pRoot,Queue *pQueue)
 
    return 1;
 }
-
-
