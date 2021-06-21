@@ -1,7 +1,7 @@
 #include "string.h"
 #include "stdio.h"    
 #include "stdlib.h"    
-#include "math.h"  
+#include <math.h> 
 #include "time.h"
 //#include <Trees/LinkTree.h>
 #include <log.h>
@@ -156,7 +156,7 @@ void PostOrderTraverse(BiTree T)
 	PostOrderTraverse(T->rchild); /* 再后序遍历右子树  */
 	printf("%c",T->data);/* 显示结点数据，可以更改为其它对结点操作 */
 }
-int weizhi = 0;
+
 int power(int base, int powerRaised)
 {
     if (powerRaised != 0)
@@ -165,36 +165,6 @@ int power(int base, int powerRaised)
         return 1;
 }
 
-void printfgeshi(int dep, int i)
-{
-	int j;
-	char buf[100];
-	sprintf(buf, "%*s|", power(2,dep)/2, "");
-	printf("power(2,dep) = %d\n", power(2,dep));
-	for(j = 0; j< power(2,dep); j++) {
-		sprintf(buf, "^");
-	}
-	sprintf(buf, "|");	
-	printf("buf = %s\n", buf);
-}
-void PrintTrees(int dep, int num, int data[])
-{
-	DEBUG("num = %d, data = %d", num, data);
-	weizhi++;
-
-	DEBUG("weizhi = %d   %ld\n", weizhi, power(2,2));
-	if (num == 1) {
-		printf("%*s%d\n", power(2,dep), "",data[0]);
-		printfgeshi(dep, num);	
-	}else{
-		if (weizhi == 1) {
-			printf("%*s%3d%*s\n", power(2,dep)/2, "",data, power(2,dep), "*");	
-		}else{
-			printf("%*s%d%*s\n", power(2,dep),"", data, power(2,dep), "*");			
-		}
-	}
-
-}
 
 BiTree  CreatEmptyTree()
 {
@@ -216,33 +186,35 @@ int func(int n)
     return (func(n-1)*2+2);
 }
 
-void LayerOrderBiTree(BiTree root)
+void PrintBiTree(BiTree root)
 {
-	char a=0;
-	int i = 0, j= 0;
+	char a   = 0;
+	int i    = 0; //当前层次计数
+	int flag = 0; //标记是否为当前层的第一个元素
 	BiTree *T;
-
-	int dep = BiTreeDepth(root);
-	int curLayerCount = 0; //当前层中的节点数
+	int curLayerCount  = 0; //当前层中的节点数
 	int nextLayerCount = 0; //下一层中的节点数
-	linkqueue_t *queue = CreateEmptyLinkqueue();
+	int depth;
+	linkqueue_t *queue;
+	BiTree p;
+
+	depth = BiTreeDepth(root);
+	queue = CreateEmptyLinkqueue();
 	EnQueue(queue, root);
 	curLayerCount++;
-	BiTree p;
-	int flag[50] = {0};
-	int flag_old[50] = {0};
-	int flag_painer = 0;
-	//printf("%*s", func(dep-2), "");
+
+	printf("******************二叉树结构******************\n");	
+	printf("*");
 	while (OK == DeQueue(queue, &p))
 	{
-		j++;
+		flag++;
 		curLayerCount--;
-		if (j == 1) {
-	   	 	printf("%*s", func(dep-i-1), "");
+		if (flag == 1) { /* 左子树的间距 */
+	   	 	printf("%*s", func(depth-i-1), "");
 		}else{
-	   	 	printf("%*s", func(dep-i), "");			
+	   	 	printf("%*s", func(depth-i), "");			
 		}
-		printf("%c ", p->data);
+		printf("%02c", p->data);
 		if (p->lchild)
 		{
 			EnQueue(queue, p->lchild);
@@ -263,17 +235,19 @@ void LayerOrderBiTree(BiTree root)
 		}
 		if (curLayerCount == 0)//一层已经遍历完毕
 		{
-			j = 0;
+			flag = 0;
 			i++;
 			curLayerCount = nextLayerCount;
 			nextLayerCount = 0;
 			printf("\n");
+			printf("*");
 		}
-		if (i > dep-1)
+		if (i > depth-1)
 		{
 			break;
 		}
 	}
+	printf("********************************************\n");		
 }
 
 
@@ -327,7 +301,7 @@ int main()
 	printf("\n后序遍历二叉树:");
 	PostOrderTraverse(T);
 */
-	LayerOrderBiTree(T);
+	PrintBiTree(T);
 	ClearBiTree(&T);
 	printf("\n清除二叉树后,树空否？%d(1:是 0:否) 树的深度=%d\n",BiTreeEmpty(T),BiTreeDepth(T));
 	i=Root(T);
