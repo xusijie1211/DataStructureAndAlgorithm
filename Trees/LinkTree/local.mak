@@ -11,7 +11,7 @@ APP_TARGET = queue
 
 # Module extra FLAGS.
 EXTRA_CFLAGS :=
-EXTRA_LDFLAGS := -lstdc++
+EXTRA_LDFLAGS := -lstdc++ -lm
 
 # options only for cpp compiling.
 override ADD_CPPFLAGS += -std=c++11

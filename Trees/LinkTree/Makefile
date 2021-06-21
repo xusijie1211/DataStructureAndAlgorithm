@@ -75,6 +75,7 @@ $(addprefix $(_PDIR)/,$(root-objs)):
 
 # generate depend files.
 $(_PDIR)/%.d: %.c
+	$(warinning   "aaaaa"$($Q$(top_srcdir)/scripts/mkcdep $< "$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@))" > $@))
 	$Q$(top_srcdir)/scripts/mkcdep $< "$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@))" > $@
 
 $(_PDIR)/%.d: %.cpp

@@ -1,1 +1,0 @@
-/Users/user/Desktop/DataStructureAndAlgorithm/sample/libhello/hello.h

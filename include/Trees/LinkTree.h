@@ -13,7 +13,7 @@ typedef int Status;		/* Status是函数的类型,其值是函数结果状态代�
 
 
 typedef char TElemType;
-TElemType Nil=' '; /* 字符型以空格符为空 */
+//TElemType Nil=' '; /* 字符型以空格符为空 */
 
 typedef struct BiTNode  /* 结点结构 */
 {

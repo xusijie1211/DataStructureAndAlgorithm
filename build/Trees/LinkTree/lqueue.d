@@ -1,7 +1,7 @@
-file=linkstack.c
+file=lqueue.c
 path= -Os -Wall -g -I/home/ubuntu/samb/DataStructureAndAlgorithm/include     -I/home/ubuntu/samb/DataStructureAndAlgorithm/include 
-name=/home/ubuntu/samb/DataStructureAndAlgorithm/build/Stack/LinkStack/linkstack.d
-/home/ubuntu/samb/DataStructureAndAlgorithm/build/Stack/LinkStack/linkstack.o /home/ubuntu/samb/DataStructureAndAlgorithm/build/Stack/LinkStack/linkstack.d : $(wildcard linkstack.c /usr/include/stdc-predef.h /usr/include/stdio.h \
+name=/home/ubuntu/samb/DataStructureAndAlgorithm/build/Trees/LinkTree/lqueue.d
+/home/ubuntu/samb/DataStructureAndAlgorithm/build/Trees/LinkTree/lqueue.o /home/ubuntu/samb/DataStructureAndAlgorithm/build/Trees/LinkTree/lqueue.d : $(wildcard lqueue.c /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -51,5 +51,5 @@ name=/home/ubuntu/samb/DataStructureAndAlgorithm/build/Stack/LinkStack/linkstack
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib.h \
- /home/ubuntu/samb/DataStructureAndAlgorithm/include/log.h \
- /home/ubuntu/samb/DataStructureAndAlgorithm/include/linkstack.h)
+ /home/ubuntu/samb/DataStructureAndAlgorithm/include/log.h pqueue.h \
+ /home/ubuntu/samb/DataStructureAndAlgorithm/include/Trees/LinkTree.h)

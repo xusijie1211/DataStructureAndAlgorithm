@@ -1,3 +1,0 @@
-ifeq (-Os -Wall -g -I/home/ubuntu/samb/DataStructureAndAlgorithm/include -I/home/ubuntu/samb/DataStructureAndAlgorithm/include :,$(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_linkstack.o))))
-FILES_FLAGS_UP_TO_DATE += /home/ubuntu/samb/DataStructureAndAlgorithm/build/Stack/LinkStack/linkstack.o
-endif

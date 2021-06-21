@@ -67,5 +67,5 @@ name=/home/ubuntu/samb/DataStructureAndAlgorithm/build/Trees/LinkTree/BiTreeLink
  /usr/include/x86_64-linux-gnu/bits/time.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
- /home/ubuntu/samb/DataStructureAndAlgorithm/include/Trees/LinkTree.h \
- /home/ubuntu/samb/DataStructureAndAlgorithm/include/lqueue.h)
+ /home/ubuntu/samb/DataStructureAndAlgorithm/include/log.h pqueue.h \
+ /home/ubuntu/samb/DataStructureAndAlgorithm/include/Trees/LinkTree.h)

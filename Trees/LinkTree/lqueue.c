@@ -14,8 +14,7 @@ linkqueue_t *CreateEmptyLinkqueue()//创建空队列
 		perror("Create Empty LinkQueue Error");
 		return NULL;
 	}
-	queue->rear = queue->front = NULL;
-
+	queue->rear = queue->front = NULL;	
 	return queue;
 }
 
@@ -56,24 +55,27 @@ int EmptyLinkqueue(linkqueue_t *queue)//判定队列是否为空
 		printf("EmptyLinkqueue Error\n");
 		return -1;
 	}
+
 	return queue->front == NULL ? OK : ERROR;
 }
 
 int EnQueue(linkqueue_t *queue, data_t x)//入队
 {
 	linknode_t *node_new;
+	int ret;
 
 	if (!queue)
 	{
 		printf("EnQueue Error\n");
 		return ERROR;
 	}
+
 	node_new = (linknode_t *)malloc(sizeof(linknode_t));
 	node_new->data = x;
 	node_new->next = NULL;
 
-	if(EmptyLinkqueue(queue)==OK)
-	{
+	ret = EmptyLinkqueue(queue);
+	if(ret == OK) {
 		queue->front = queue->rear = node_new;
 	}
 	else
@@ -81,7 +83,6 @@ int EnQueue(linkqueue_t *queue, data_t x)//入队
 		queue->rear->next = node_new;
 		queue->rear = node_new;
 	}
-
 	return OK;
 }
 
@@ -93,25 +94,21 @@ int DeQueue(linkqueue_t *queue, data_t *x)//出队
 	{
 		printf("DeQueue Error\n");
 		return ERROR;
-	}
+	}	
 	if(EmptyLinkqueue(queue)==OK)
     {
         printf("queue is Empty\n");
         return ERROR;
     }
 	node_remove = queue->front;
-
 	queue->front = node_remove->next;
 
-	if (NULL == queue->front)
+	if (NULL == queue->front) {
 		queue->rear = NULL;
-
-	if(x)
-	{
-		*x = node_remove->data;
 	}
-
+	(*x) = node_remove->data;
 	free(node_remove);
+
 	return OK;
 }
 
@@ -127,41 +124,10 @@ int VisitQueue(linkqueue_t *queue)//遍历队列
 		return OK;
 	}
 	while (NULL != node) {
-		printf("%d,", node->data);
+		printf("%p,", node->data);
 		node = node->next;
 	}
 	printf("\b}\n");
 
 	return OK;
-}
-int main()
-{
-	/*
-	linkqueue_t *queue = (linkqueue_t*)malloc(sizeof(linkqueue_t));
-	data_t data;
-	int i;
-	EnQueue(queue,20);
-	EnQueue(queue,30);
-	DeQueue(queue,&data);
-	printf("data is %d\n",data);
-	DeQueue(queue,&data);
-	printf("data is %d\n",data);
-	DeQueue(queue,&data);
-	printf("data is %d\n",data);
-	for(i=0;i<20;i++)
-	{
-		EnQueue(queue,i);
-	}
-	VisitQueue(queue);
-	for(i=0;i<25;i++)//应打印出5个Error
-	{
-		DeQueue(queue,&data);
-		printf("data is %d\n",data);
-	}
-	if(DestroyLinkqueue(queue)==OK)
-	{
-		printf("DestroyLinkqueue success\n");
-	}
-	return 0;
-	*/
 }
