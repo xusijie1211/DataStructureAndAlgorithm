@@ -26,7 +26,7 @@ EXTRA_LDFLAGS :=
 ADD_INCLUDE =
 
 # specify link libs.
-ADD_LIB =
+ADD_LIB = -ltrees
 
 #
 # extra intstall target.

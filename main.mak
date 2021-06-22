@@ -21,8 +21,9 @@ target_app := sample/libptree
 #target_app += version extrabuild
 
 # All the target libraries to be compiled.
-target_lib := Trees/libLinkTree
-target_lib := Trees/libtrees
+target_lib += Trees/libtrees
+target_lib += Trees/libPrintTrees
+
 #
 # for GCOV output PRELOAD
 # Usage:
@@ -31,5 +32,6 @@ target_lib := Trees/libtrees
 #
 
 # target sample:
-#target_app += LinkList
-target_app += Trees
+target_app := Trees
+
+
