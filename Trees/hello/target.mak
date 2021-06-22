@@ -8,7 +8,7 @@ EXTRA_CFLAGS :=
 EXTRA_LDFLAGS :=
 
 # target modules.
-# target_modules := hello
+target_modules := hello
 # hello libhello 
 
 
