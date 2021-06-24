@@ -115,9 +115,9 @@ ifdef QUIET
 endif
 	$Q$(CC) $(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)) -c $< -o $@
 	$Q ( \
-	    echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(ADD_CFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
-	    echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
-	    echo 'endif' \
+		echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(ADD_CFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
+		echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
+		echo 'endif' \
 	) > $(dir $@)/.$(notdir $@).flags
 
 $(_PDIR)/%.o: %.cpp
@@ -126,9 +126,9 @@ ifdef QUIET
 endif
 	$Q$(CPP) $(CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)) -c $< -o $@
 	$Q ( \
-	    echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(ADD_CFLAGS) $$(ADD_CPPFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
-	    echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
-	    echo 'endif' \
+		echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(ADD_CFLAGS) $$(ADD_CPPFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
+		echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
+		echo 'endif' \
 	) > $(dir $@)/.$(notdir $@).flags
 
 # rules for gcov.

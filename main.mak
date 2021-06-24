@@ -23,7 +23,7 @@ target_app := sample/libptree
 # All the target libraries to be compiled.
 target_lib += Trees/libtrees
 target_lib += Trees/libPrintTrees
-
+target_lib += Trees/libBiSortTree
 #
 # for GCOV output PRELOAD
 # Usage:
@@ -32,6 +32,7 @@ target_lib += Trees/libPrintTrees
 #
 
 # target sample:
-target_app := Trees
+# target_app := Trees
+target_app := Trees/hello_copy
 
 

@@ -8,7 +8,7 @@ EXTRA_CFLAGS :=
 EXTRA_LDFLAGS :=
 
 # target modules.
-# target_modules := hello
+#target_modules := hello
 # hello libhello 
 
 
@@ -17,6 +17,6 @@ EXTRA_LDFLAGS :=
 # C program sample: wave_player
 # C++ program sample: hello
 # C lib sample: libhello  ==> LIB targets must be added into @common@ dir for lib compiling,
-#                             or added to @target_lib@ var on top main.mak.
+#							 or added to @target_lib@ var on top main.mak.
 #
 

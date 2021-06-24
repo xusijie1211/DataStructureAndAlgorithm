@@ -1,14 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-06-22 19:08:47
- * @LastEditTime: 2021-06-22 20:23:12
+ * @LastEditTime: 2021-06-24 09:32:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /DataStructureAndAlgorithm/Trees/libLinkTree/BiTreeLink.c
  */
 #include "string.h"
-#include "stdio.h"    
-#include "stdlib.h"    
+#include "stdio.h"	
+#include "stdlib.h"	
 #include <math.h> 
 #include "time.h"
 #include <log.h>
@@ -28,6 +28,17 @@ typedef struct
 {
 	linklist_t front, rear;
 } linkqueue_t;
+
+BiTree  CreatEmptyTree()
+{
+	BiTree T=(BiTNode *)malloc(sizeof(BiTNode));
+	if(!T)
+		exit(0);
+	T->data= 0; /* 生成根结点 */
+	T->lchild = NULL;
+	T->rchild = NULL;
+	return T;
+}
 
 int EnQueue(linkqueue_t *queue, data_t x)//入队
 {
@@ -66,10 +77,10 @@ int DeQueue(linkqueue_t *queue, data_t *x)//出队
 		return ERROR;
 	}	
 	if(EmptyLinkqueue(queue)==OK)
-    {
-        printf("queue is Empty\n");
-        return ERROR;
-    }
+	{
+		printf("queue is Empty\n");
+		return ERROR;
+	}
 	node_remove = queue->front;
 	queue->front = node_remove->next;
 
@@ -82,11 +93,27 @@ int DeQueue(linkqueue_t *queue, data_t *x)//出队
 	return OK;
 }
 
+int ClearLinkqueue(linkqueue_t *queue)//清空队列
+{
+	linknode_t *node_remove;
+
+	node_remove = queue->front;
+	while (NULL != node_remove)
+	{
+		queue->front = queue->front->next;
+		free (node_remove);
+		node_remove = queue->front;
+	}
+
+	queue->rear = NULL;
+	return OK;
+}
+
 int DestroyLinkqueue(linkqueue_t *queue)//销毁队列
 {
 	if (queue)
 	{
-		ClearLinkqueue(queue);
+//		ClearLinkqueue(queue);
 		free(queue);
 		return OK;
 	}
@@ -125,25 +152,25 @@ int EmptyLinkqueue(linkqueue_t *queue)//判定队列是否为空
 
 int power(int base, int powerRaised)
 {
-    if (powerRaised != 0)
-        return (base*power(base, powerRaised-1));
-    else
-        return 1;
+	if (powerRaised != 0)
+		return (base*power(base, powerRaised-1));
+	else
+		return 1;
 }
 
 int func(int n)
 {
-    if (n == 0)
-    {
-        return 0;
-    }
-    return (func(n-1)*2+2);
+	if (n == 0)
+	{
+		return 0;
+	}
+	return (func(n-1)*2+2);
 }
 
 void PrintBiTree(BiTree root)
 {
 	char a   = 0;
-	int i    = 0; //当前层次计数
+	int i	= 0; //当前层次计数
 	int flag = 0; //标记是否为当前层的第一个元素
 	BiTree *T;
 	int curLayerCount  = 0; //当前层中的节点数
@@ -164,11 +191,12 @@ void PrintBiTree(BiTree root)
 		flag++;
 		curLayerCount--;
 		if (flag == 1) { /* 左子树的间距 */
-	   	 	printf("%*s", func(depth-i-1), "");
+				printf("%*s", func(depth-i-1), "");
 		}else{
-	   	 	printf("%*s", func(depth-i), "");			
+				printf("%*s", func(depth-i), "");			
 		}
-		printf("%02c", p->data);
+		printf("%02d", p->data);
+
 		if (p->lchild)
 		{
 			EnQueue(queue, p->lchild);
@@ -177,7 +205,7 @@ void PrintBiTree(BiTree root)
 			T = CreatEmptyTree();
 			EnQueue(queue, T);
 			nextLayerCount++;
-		}
+		}	
 		if (p->rchild)
 		{
 			EnQueue(queue, p->rchild);
@@ -200,6 +228,7 @@ void PrintBiTree(BiTree root)
 		{
 			break;
 		}
+
 	}
 	printf("********************************************\n");		
 }

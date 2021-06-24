@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-06-23 17:35:57
+ * @LastEditTime: 2021-06-23 19:12:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /DataStructureAndAlgorithm/Trees/libtrees/libtree_link.h
+ */
 #ifndef _LINKSTREE_H_
 #define _LINKSTREE_H_
 
@@ -12,7 +20,7 @@ typedef int Status;		/* Status是函数的类型,其值是函数结果状态代�
 
 
 
-typedef char TElemType;
+typedef int TElemType;
 //TElemType Nil=' '; /* 字符型以空格符为空 */
 
 typedef struct BiTNode  /* 结点结构 */
@@ -32,7 +40,6 @@ void Assign(BiTree p,TElemType value);
 void PreOrderTraverse(BiTree T);
 void InOrderTraverse(BiTree T);
 void PostOrderTraverse(BiTree T);
-BiTree  CreatEmptyTree();
 
 
 #endif

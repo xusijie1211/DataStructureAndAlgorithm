@@ -17,6 +17,6 @@ target_modules := LinkTree
 # C program sample: wave_player
 # C++ program sample: hello
 # C lib sample: libhello  ==> LIB targets must be added into @common@ dir for lib compiling,
-#                             or added to @target_lib@ var on top main.mak.
+#							 or added to @target_lib@ var on top main.mak.
 #
 

@@ -1,6 +1,6 @@
 #include "string.h"
-#include "stdio.h"    
-#include "stdlib.h"    
+#include "stdio.h"	
+#include "stdlib.h"	
 #include <math.h> 
 #include "time.h"
 //#include <Trees/LinkTree.h>
@@ -159,10 +159,10 @@ void PostOrderTraverse(BiTree T)
 
 int power(int base, int powerRaised)
 {
-    if (powerRaised != 0)
-        return (base*power(base, powerRaised-1));
-    else
-        return 1;
+	if (powerRaised != 0)
+		return (base*power(base, powerRaised-1));
+	else
+		return 1;
 }
 
 
@@ -179,17 +179,17 @@ BiTree  CreatEmptyTree()
 
 int func(int n)
 {
-    if (n == 0)
-    {
-        return 0;
-    }
-    return (func(n-1)*2+2);
+	if (n == 0)
+	{
+		return 0;
+	}
+	return (func(n-1)*2+2);
 }
 
 void PrintBiTree(BiTree root)
 {
 	char a   = 0;
-	int i    = 0; //当前层次计数
+	int i	= 0; //当前层次计数
 	int flag = 0; //标记是否为当前层的第一个元素
 	BiTree *T;
 	int curLayerCount  = 0; //当前层中的节点数
@@ -210,9 +210,9 @@ void PrintBiTree(BiTree root)
 		flag++;
 		curLayerCount--;
 		if (flag == 1) { /* 左子树的间距 */
-	   	 	printf("%*s", func(depth-i-1), "");
+				printf("%*s", func(depth-i-1), "");
 		}else{
-	   	 	printf("%*s", func(depth-i), "");			
+				printf("%*s", func(depth-i), "");			
 		}
 		printf("%02c", p->data);
 		if (p->lchild)

@@ -4,26 +4,29 @@
 #
 
 #
-# Module app name
-# APP output file name, that will installed into system bin dir.
+# LIB name & version.
+# e.g.
+# LIB_NAME = common
+# LIB_VERSION = 1.0
+# output LIB file: libcommon.so -> libcommon.so.1.0
 #
-APP_TARGET = hello
+LIB_NAME = BiSortTree
+LIB_VERSION = 1.0
 
 # Module extra FLAGS.
 EXTRA_CFLAGS :=
-EXTRA_LDFLAGS := -lstdc++
+EXTRA_LDFLAGS :=
 
 # options only for cpp compiling.
-override ADD_CPPFLAGS += -std=c++11
+# override ADD_CPPFLAGS += -std=c++11
 
 # Module include path, separate with while space.
 # e.g.
-# $(APP_TOPDIR)/include
-#
+# $(LIBTOPDIR)/include
 ADD_INCLUDE =
 
 # specify link libs.
-ADD_LIB = -ltrees -lBiSortTree -lprint_tree
+ADD_LIB = -ltrees
 
 #
 # extra intstall target.
@@ -36,9 +39,16 @@ install_extra:
 uninstall_extra:
 	@echo "uninstall extra files..."
 
+# LIB header files or dirs, which will be linked to common header dir.
+# e.g.
+# LIB_HEADERS := include/hello.h
+# LIB_SUBHEADERS := $(wildcard subdir/*.h)
+LIB_HEADERS := libBiSortTrees.h
+LIB_SUBHEADERS :=
+
 # rootobjs: specify the files of current dir to be compiled.
 # e.g.
-# root-objs := hello.o
+# root-objs := common.o
 #
 SRC := $(wildcard *.c)
 root-objs := $(SRC:%.c=%.o)
