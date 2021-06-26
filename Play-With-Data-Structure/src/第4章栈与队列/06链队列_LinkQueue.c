@@ -1,4 +1,4 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -8,21 +8,21 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 20 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 20 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
 typedef int Status; 
 
-typedef int QElemType; /* QElemTypeÀàÐÍ¸ù¾ÝÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int QElemType; /* QElemTypeï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªint */
 
-typedef struct QNode	/* ½áµã½á¹¹ */
+typedef struct QNode	/* ï¿½ï¿½ï¿½á¹¹ */
 {
    QElemType data;
    struct QNode *next;
 }QNode,*QueuePtr;
 
-typedef struct			/* ¶ÓÁÐµÄÁ´±í½á¹¹ */
+typedef struct			/* ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ */
 {
-   QueuePtr front,rear; /* ¶ÓÍ·¡¢¶ÓÎ²Ö¸Õë */
+   QueuePtr front,rear; /* ï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Î²Ö¸ï¿½ï¿½ */
 }LinkQueue;
 
 Status visit(QElemType c)
@@ -31,7 +31,7 @@ Status visit(QElemType c)
 	return OK;
 }
 
-/* ¹¹ÔìÒ»¸ö¿Õ¶ÓÁÐQ */
+/* ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½Q */
 Status InitQueue(LinkQueue *Q)
 { 
 	Q->front=Q->rear=(QueuePtr)malloc(sizeof(QNode));
@@ -41,7 +41,7 @@ Status InitQueue(LinkQueue *Q)
 	return OK;
 }
 
-/* Ïú»Ù¶ÓÁÐQ */
+/* ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½Q */
 Status DestroyQueue(LinkQueue *Q)
 {
 	while(Q->front)
@@ -53,7 +53,7 @@ Status DestroyQueue(LinkQueue *Q)
 	return OK;
 }
 
-/* ½«QÇåÎª¿Õ¶ÓÁÐ */
+/* ï¿½ï¿½Qï¿½ï¿½Îªï¿½Õ¶ï¿½ï¿½ï¿½ */
 Status ClearQueue(LinkQueue *Q)
 {
 	QueuePtr p,q;
@@ -69,7 +69,7 @@ Status ClearQueue(LinkQueue *Q)
 	return OK;
 }
 
-/* ÈôQÎª¿Õ¶ÓÁÐ,Ôò·µ»ØTRUE,·ñÔò·µ»ØFALSE */
+/* ï¿½ï¿½QÎªï¿½Õ¶ï¿½ï¿½ï¿½,ï¿½ò·µ»ï¿½TRUE,ï¿½ï¿½ï¿½ò·µ»ï¿½FALSE */
 Status QueueEmpty(LinkQueue Q)
 { 
 	if(Q.front==Q.rear)
@@ -78,7 +78,7 @@ Status QueueEmpty(LinkQueue Q)
 		return FALSE;
 }
 
-/* Çó¶ÓÁÐµÄ³¤¶È */
+/* ï¿½ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½ */
 int QueueLength(LinkQueue Q)
 { 
 	int i=0;
@@ -92,7 +92,7 @@ int QueueLength(LinkQueue Q)
 	return i;
 }
 
-/* Èô¶ÓÁÐ²»¿Õ,ÔòÓÃe·µ»ØQµÄ¶ÓÍ·ÔªËØ,²¢·µ»ØOK,·ñÔò·µ»ØERROR */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½Qï¿½Ä¶ï¿½Í·Ôªï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OK,ï¿½ï¿½ï¿½ò·µ»ï¿½ERROR */
 Status GetHead(LinkQueue Q,QElemType *e)
 { 
 	QueuePtr p;
@@ -104,35 +104,35 @@ Status GetHead(LinkQueue Q,QElemType *e)
 }
 
 
-/* ²åÈëÔªËØeÎªQµÄÐÂµÄ¶ÓÎ²ÔªËØ */
+/* ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½eÎªQï¿½ï¿½ï¿½ÂµÄ¶ï¿½Î²Ôªï¿½ï¿½ */
 Status EnQueue(LinkQueue *Q,QElemType e)
 { 
 	QueuePtr s=(QueuePtr)malloc(sizeof(QNode));
-	if(!s) /* ´æ´¢·ÖÅäÊ§°Ü */
+	if(!s) /* ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
 		exit(OVERFLOW);
 	s->data=e;
 	s->next=NULL;
-	Q->rear->next=s;	/* °ÑÓµÓÐÔªËØeµÄÐÂ½áµãs¸³Öµ¸øÔ­¶ÓÎ²½áµãµÄºó¼Ì£¬¼ûÍ¼ÖÐ¢Ù */
-	Q->rear=s;		/* °Ñµ±Ç°µÄsÉèÖÃÎª¶ÓÎ²½áµã£¬rearÖ¸Ïòs£¬¼ûÍ¼ÖÐ¢Ú */
+	Q->rear->next=s;	/* ï¿½ï¿½Óµï¿½ï¿½Ôªï¿½ï¿½eï¿½ï¿½ï¿½Â½ï¿½ï¿½sï¿½ï¿½Öµï¿½ï¿½Ô­ï¿½ï¿½Î²ï¿½ï¿½ï¿½Äºï¿½Ì£ï¿½ï¿½ï¿½Í¼ï¿½Ð¢ï¿½ */
+	Q->rear=s;		/* ï¿½Ñµï¿½Ç°ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Î²ï¿½ï¿½ã£¬rearÖ¸ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ð¢ï¿½ */
 	return OK;
 }
 
-/* Èô¶ÓÁÐ²»¿Õ,É¾³ýQµÄ¶ÓÍ·ÔªËØ,ÓÃe·µ»ØÆäÖµ,²¢·µ»ØOK,·ñÔò·µ»ØERROR */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½,É¾ï¿½ï¿½Qï¿½Ä¶ï¿½Í·Ôªï¿½ï¿½,ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OK,ï¿½ï¿½ï¿½ò·µ»ï¿½ERROR */
 Status DeQueue(LinkQueue *Q,QElemType *e)
 {
 	QueuePtr p;
 	if(Q->front==Q->rear)
 		return ERROR;
-	p=Q->front->next;		/* ½«ÓûÉ¾³ýµÄ¶ÓÍ·½áµãÔÝ´æ¸øp£¬¼ûÍ¼ÖÐ¢Ù */
-	*e=p->data;				/* ½«ÓûÉ¾³ýµÄ¶ÓÍ·½áµãµÄÖµ¸³Öµ¸øe */
-	Q->front->next=p->next;/* ½«Ô­¶ÓÍ·½áµãµÄºó¼Ìp->next¸³Öµ¸øÍ·½áµãºó¼Ì£¬¼ûÍ¼ÖÐ¢Ú */
-	if(Q->rear==p)		/* Èô¶ÓÍ·¾ÍÊÇ¶ÓÎ²£¬ÔòÉ¾³ýºó½«rearÖ¸ÏòÍ·½áµã£¬¼ûÍ¼ÖÐ¢Û */
+	p=Q->front->next;		/* ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Ä¶ï¿½Í·ï¿½ï¿½ï¿½ï¿½Ý´ï¿½ï¿½pï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ð¢ï¿½ */
+	*e=p->data;				/* ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Ä¶ï¿½Í·ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Öµï¿½ï¿½e */
+	Q->front->next=p->next;/* ï¿½ï¿½Ô­ï¿½ï¿½Í·ï¿½ï¿½ï¿½Äºï¿½ï¿½p->nextï¿½ï¿½Öµï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½Í¼ï¿½Ð¢ï¿½ */
+	if(Q->rear==p)		/* ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Ç¶ï¿½Î²ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½rearÖ¸ï¿½ï¿½Í·ï¿½ï¿½ã£¬ï¿½ï¿½Í¼ï¿½Ð¢ï¿½ */
 		Q->rear=Q->front;
 	free(p);
 	return OK;
 }
 
-/* ´Ó¶ÓÍ·µ½¶ÓÎ²ÒÀ´Î¶Ô¶ÓÁÐQÖÐÃ¿¸öÔªËØÊä³ö */
+/* ï¿½Ó¶ï¿½Í·ï¿½ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½Î¶Ô¶ï¿½ï¿½ï¿½Qï¿½ï¿½Ã¿ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ */
 Status QueueTraverse(LinkQueue Q)
 {
 	QueuePtr p;
@@ -153,28 +153,28 @@ int main()
 	LinkQueue q;
 	i=InitQueue(&q);
 	if(i)
-		printf("³É¹¦µØ¹¹ÔìÁËÒ»¸ö¿Õ¶ÓÁÐ!\n");
-	printf("ÊÇ·ñ¿Õ¶ÓÁÐ£¿%d(1:¿Õ 0:·ñ)  ",QueueEmpty(q));
-	printf("¶ÓÁÐµÄ³¤¶ÈÎª%d\n",QueueLength(q));
+		printf("ï¿½É¹ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½!\n");
+	printf("ï¿½Ç·ï¿½Õ¶ï¿½ï¿½Ð£ï¿½%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)  ",QueueEmpty(q));
+	printf("ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½Îª%d\n",QueueLength(q));
 	EnQueue(&q,-5);
 	EnQueue(&q,5);
 	EnQueue(&q,10);
-	printf("²åÈë3¸öÔªËØ(-5,5,10)ºó,¶ÓÁÐµÄ³¤¶ÈÎª%d\n",QueueLength(q));
-	printf("ÊÇ·ñ¿Õ¶ÓÁÐ£¿%d(1:¿Õ 0:·ñ)  ",QueueEmpty(q));
-	printf("¶ÓÁÐµÄÔªËØÒÀ´ÎÎª£º");
+	printf("ï¿½ï¿½ï¿½ï¿½3ï¿½ï¿½Ôªï¿½ï¿½(-5,5,10)ï¿½ï¿½,ï¿½ï¿½ï¿½ÐµÄ³ï¿½ï¿½ï¿½Îª%d\n",QueueLength(q));
+	printf("ï¿½Ç·ï¿½Õ¶ï¿½ï¿½Ð£ï¿½%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)  ",QueueEmpty(q));
+	printf("ï¿½ï¿½ï¿½Ðµï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
 	QueueTraverse(q);
 	i=GetHead(q,&d);
 	if(i==OK)
-	 printf("¶ÓÍ·ÔªËØÊÇ£º%d\n",d);
+	 printf("ï¿½ï¿½Í·Ôªï¿½ï¿½ï¿½Ç£ï¿½%d\n",d);
 	DeQueue(&q,&d);
-	printf("É¾³ýÁË¶ÓÍ·ÔªËØ%d\n",d);
+	printf("É¾ï¿½ï¿½ï¿½Ë¶ï¿½Í·Ôªï¿½ï¿½%d\n",d);
 	i=GetHead(q,&d);
 	if(i==OK)
-		printf("ÐÂµÄ¶ÓÍ·ÔªËØÊÇ£º%d\n",d);
+		printf("ï¿½ÂµÄ¶ï¿½Í·Ôªï¿½ï¿½ï¿½Ç£ï¿½%d\n",d);
 	ClearQueue(&q);
-	printf("Çå¿Õ¶ÓÁÐºó,q.front=%u q.rear=%u q.front->next=%u\n",q.front,q.rear,q.front->next);
+	printf("ï¿½ï¿½Õ¶ï¿½ï¿½Ðºï¿½,q.front=%u q.rear=%u q.front->next=%u\n",q.front,q.rear,q.front->next);
 	DestroyQueue(&q);
-	printf("Ïú»Ù¶ÓÁÐºó,q.front=%u q.rear=%u\n",q.front, q.rear);
+	printf("ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½Ðºï¿½,q.front=%u q.rear=%u\n",q.front, q.rear);
 	
 	return 0;
 }

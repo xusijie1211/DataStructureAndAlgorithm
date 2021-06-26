@@ -3,7 +3,7 @@
 
 curdirname=$(basename $PWD)
 if [ "$curdirname" = "scripts" ]; then
-    cd ..
+	cd ..
 fi
 
 # We start app building with project top dir.

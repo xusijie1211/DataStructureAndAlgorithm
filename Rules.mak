@@ -50,12 +50,12 @@ endif
 
 obj-dep := $(patsubst %.o,%.d,$(obj-y))
 active-objs := $(addprefix $(_PDIR)/,$(sort $(obj-y)))
-obj-y	+= $(join $(subdir-y), $(patsubst %,/_sub_%.o,$(notdir $(subdir-y))))
+obj-y    += $(join $(subdir-y), $(patsubst %,/_sub_%.o,$(notdir $(subdir-y))))
 obj-y-lnk = $(obj-y)
 
-SUB_DIRS	:= $(subdir-y)
-EXIST_SUB_DIRS	:= $(wildcard $(subdir-y))
-obj-name	:= $(patsubst %.o,%,$(obj-y))
+SUB_DIRS    := $(subdir-y)
+EXIST_SUB_DIRS    := $(wildcard $(subdir-y))
+obj-name    := $(patsubst %.o,%,$(obj-y))
 EXTRA_LDFLAGS  = -r
 
 #
@@ -71,9 +71,9 @@ else
 	$Q$(CC) $(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)) -c  $< -o $@
 endif
 	$Q ( \
-	    echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(EXTRA_INCLUDE) $$(EXTRA_CFLAGS) $$(ADD_CFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
-	    echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
-	    echo 'endif' \
+		echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(EXTRA_INCLUDE) $$(EXTRA_CFLAGS) $$(ADD_CFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
+		echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
+		echo 'endif' \
 	) > $(dir $@)/.$(notdir $@).flags
 
 $(_PDIR)/%.o: %.cpp
@@ -86,9 +86,9 @@ else
 	$Q$(CPP) $(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)) -c  $< -o $@
 endif
 	$Q ( \
-	    echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(EXTRA_INCLUDE) $$(EXTRA_CFLAGS) $$(ADD_CFLAGS) $$(ADD_CPPFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
-	    echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
-	    echo 'endif' \
+		echo 'ifeq ($(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_INCLUDE) $(EXTRA_CFLAGS) $(ADD_CFLAGS) $(ADD_CPPFLAGS) $(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))),$$(strip $$(subst $$(comma),:,$$(CFLAGS) $$(EXTRA_INCLUDE) $$(EXTRA_CFLAGS) $$(ADD_CFLAGS) $$(ADD_CPPFLAGS) $$(CFLAGS_$(patsubst $(_PDIR)/%,%,$@)))))' ; \
+		echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
+		echo 'endif' \
 	) > $(dir $@)/.$(notdir $@).flags
 
 $(_PDIR)/%.d: %.c
@@ -124,9 +124,9 @@ endif
 	$Q$(AR) rcs $@
 endif
 	$Q ( \
-	    echo 'ifeq ($(strip $(subst $(comma),:,$(EXTRA_LDFLAGS) $(obj-y))),$$(strip $$(subst $$(comma),:,$$(EXTRA_LDFLAGS) $$(obj-y))))' ; \
-	    echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
-	    echo 'endif' \
+		echo 'ifeq ($(strip $(subst $(comma),:,$(EXTRA_LDFLAGS) $(obj-y))),$$(strip $$(subst $$(comma),:,$$(EXTRA_LDFLAGS) $$(obj-y))))' ; \
+		echo 'FILES_FLAGS_UP_TO_DATE += $@' ; \
+		echo 'endif' \
 	) > $(dir $@)/.$(notdir $@).flags
 endif # O_TARGET
 
@@ -169,7 +169,7 @@ endif
 endif
 endif
 
-# °üº¬.dÎÄ¼þ
+# ï¿½ï¿½ï¿½ï¿½.dï¿½Ä¼ï¿½
 FILES_DEPEND_EXIST := $(wildcard $(addprefix $(_PDIR)/,$(obj-dep)))
 ifneq ($(FILES_DEPEND_EXIST),)
 include $(FILES_DEPEND_EXIST)
@@ -185,7 +185,7 @@ dummy:
 #endif
 
 #
-# ÒÔÏÂÊÇÅÐ¶Ï±àÒëÑ¡Ïî¸Ä¶¯ÎÊÌâ£¬Èç¹û±àÒëÑ¡Ïî¸Ä±ä£¬ÔòÎÄ¼þÖØÐÂ±àÒë
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ä±ä£¬ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½
 #
 # Find files whose flags have changed and force recompilation.
 # For safety, this works in the converse direction:
@@ -202,7 +202,7 @@ include $(FILES_FLAGS_EXIST)
 endif
 
 FILES_FLAGS_CHANGED := $(strip \
-    $(filter-out $(FILES_FLAGS_UP_TO_DATE), \
+	$(filter-out $(FILES_FLAGS_UP_TO_DATE), \
 	$(_PDIR)/$(O_TARGET) $(active-objs)))
 
 # A kludge: .S files don't get flag dependencies (yet),
@@ -211,10 +211,10 @@ FILES_FLAGS_CHANGED := $(strip \
 #   This allows handling of assembly files that get translated into
 #   multiple object files (see arch/ia64/lib/idiv.S, for example).
 FILES_FLAGS_CHANGED := $(strip \
-    $(filter-out $(patsubst %.S, %.o, $(addprefix $(_PDIR)/,$(wildcard *.S)) $(IGNORE_FLAGS_OBJS)), \
-    $(FILES_FLAGS_CHANGED)))
+	$(filter-out $(patsubst %.S, %.o, $(addprefix $(_PDIR)/,$(wildcard *.S)) $(IGNORE_FLAGS_OBJS)), \
+	$(FILES_FLAGS_CHANGED)))
 
-# Èç¹û±àÒëÑ¡ÏîÒÑ¸Ä±ä£¬ÔòÖØÐÂ±àÒë
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ñ¸Ä±ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½
 ifneq ($(FILES_FLAGS_CHANGED),)
 $(FILES_FLAGS_CHANGED): dummy
 endif

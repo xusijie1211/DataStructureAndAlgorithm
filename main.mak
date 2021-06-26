@@ -16,14 +16,15 @@ extra_alibs :=
 extra_solibs :=
 
 # All the target applications to be compiled.
-target_app := sample/libptree
 # Install only target.
 #target_app += version extrabuild
 
 # All the target libraries to be compiled.
-target_lib += Trees/libtrees
-target_lib += Trees/libPrintTrees
-target_lib += Trees/libBiSortTree
+target_lib += sample/libtree/libtrees
+target_lib += sample/libtree/libprint_trees
+target_lib += sample/libtree/libbisort_trees
+target_lib += sample/libtree/libAVLTrees
+
 #
 # for GCOV output PRELOAD
 # Usage:
@@ -32,7 +33,8 @@ target_lib += Trees/libBiSortTree
 #
 
 # target sample:
-# target_app := Trees
-target_app := Trees/hello_copy
+target_app := sample/Trees
+target_app := sample
+#target_app := Trees/hello_copy
 
 

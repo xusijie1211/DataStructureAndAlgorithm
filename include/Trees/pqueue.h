@@ -6,14 +6,14 @@ typedef BiTree data_t;
 
 typedef struct node_t
 {
-	data_t data;
-	struct node_t *next;
+    data_t data;
+    struct node_t *next;
 
 } linknode_t, *linklist_t;
 
 typedef struct
 {
-	linklist_t front, rear;
+    linklist_t front, rear;
 } linkqueue_t;
 
 int EnQueue(linkqueue_t *queue, data_t x);//入队

@@ -1,5 +1,5 @@
 #include "string.h"
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -10,21 +10,21 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
-typedef int Status;	/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë,ÈçOKµÈ */
+typedef int Status;	/* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½OKï¿½ï¿½ */
 typedef char TElemType;
-typedef enum {Link,Thread} PointerTag;	/* Link==0±íÊ¾Ö¸Ïò×óÓÒº¢×ÓÖ¸Õë, */
-										/* Thread==1±íÊ¾Ö¸ÏòÇ°Çý»òºó¼ÌµÄÏßË÷ */
-typedef  struct BiThrNode	/* ¶þ²æÏßË÷´æ´¢½áµã½á¹¹ */
+typedef enum {Link,Thread} PointerTag;	/* Link==0ï¿½ï¿½Ê¾Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½Ö¸ï¿½ï¿½, */
+										/* Thread==1ï¿½ï¿½Ê¾Ö¸ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ */
+typedef  struct BiThrNode	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½ï¿½ï¿½á¹¹ */
 {
-	TElemType data;	/* ½áµãÊý¾Ý */
-	struct BiThrNode *lchild, *rchild;	/* ×óÓÒº¢×ÓÖ¸Õë */
+	TElemType data;	/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	struct BiThrNode *lchild, *rchild;	/* ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ */
 	PointerTag LTag;
-	PointerTag RTag;		/* ×óÓÒ±êÖ¾ */
+	PointerTag RTag;		/* ï¿½ï¿½ï¿½Ò±ï¿½Ö¾ */
 } BiThrNode, *BiThrTree;
 
-TElemType Nil='#'; /* ×Ö·ûÐÍÒÔ¿Õ¸ñ·ûÎª¿Õ */
+TElemType Nil='#'; /* ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ô¿Õ¸ï¿½ï¿½Îªï¿½ï¿½ */
 
 Status visit(TElemType e)
 {
@@ -32,8 +32,8 @@ Status visit(TElemType e)
 	return OK;
 }
 
-/* °´Ç°ÐòÊäÈë¶þ²æÏßË÷Ê÷ÖÐ½áµãµÄÖµ,¹¹Ôì¶þ²æÏßË÷Ê÷T */
-/* 0(ÕûÐÍ)/¿Õ¸ñ(×Ö·ûÐÍ)±íÊ¾¿Õ½áµã */
+/* ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½Öµ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T */
+/* 0(ï¿½ï¿½ï¿½ï¿½)/ï¿½Õ¸ï¿½(ï¿½Ö·ï¿½ï¿½ï¿½)ï¿½ï¿½Ê¾ï¿½Õ½ï¿½ï¿½ */
 Status CreateBiThrTree(BiThrTree *T)
 { 
 	TElemType h;
@@ -46,77 +46,77 @@ Status CreateBiThrTree(BiThrTree *T)
 		*T=(BiThrTree)malloc(sizeof(BiThrNode));
 		if(!*T)
 			exit(OVERFLOW);
-		(*T)->data=h; /* Éú³É¸ù½áµã(Ç°Ðò) */
-		CreateBiThrTree(&(*T)->lchild); /* µÝ¹é¹¹Ôì×ó×ÓÊ÷ */
-		if((*T)->lchild) /* ÓÐ×óº¢×Ó */
+		(*T)->data=h; /* ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½(Ç°ï¿½ï¿½) */
+		CreateBiThrTree(&(*T)->lchild); /* ï¿½Ý¹é¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+		if((*T)->lchild) /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 			(*T)->LTag=Link;
-		CreateBiThrTree(&(*T)->rchild); /* µÝ¹é¹¹ÔìÓÒ×ÓÊ÷ */
-		if((*T)->rchild) /* ÓÐÓÒº¢×Ó */
+		CreateBiThrTree(&(*T)->rchild); /* ï¿½Ý¹é¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+		if((*T)->rchild) /* ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ */
 			(*T)->RTag=Link;
 	}
 	return OK;
 }
 
-BiThrTree pre; /* È«¾Ö±äÁ¿,Ê¼ÖÕÖ¸Ïò¸Õ¸Õ·ÃÎÊ¹ýµÄ½áµã */
-/* ÖÐÐò±éÀú½øÐÐÖÐÐòÏßË÷»¯ */
+BiThrTree pre; /* È«ï¿½Ö±ï¿½ï¿½ï¿½,Ê¼ï¿½ï¿½Ö¸ï¿½ï¿½Õ¸Õ·ï¿½ï¿½Ê¹ï¿½ï¿½Ä½ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 void InThreading(BiThrTree p)
 { 
 	if(p)
 	{
-		InThreading(p->lchild); /* µÝ¹é×ó×ÓÊ÷ÏßË÷»¯ */
-		if(!p->lchild) /* Ã»ÓÐ×óº¢×Ó */
+		InThreading(p->lchild); /* ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+		if(!p->lchild) /* Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		{
-			p->LTag=Thread; /* Ç°ÇýÏßË÷ */
-			p->lchild=pre; /* ×óº¢×ÓÖ¸ÕëÖ¸ÏòÇ°Çý */
+			p->LTag=Thread; /* Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+			p->lchild=pre; /* ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ö¸ï¿½ï¿½Ç°ï¿½ï¿½ */
 		}
-		if(!pre->rchild) /* Ç°ÇýÃ»ÓÐÓÒº¢×Ó */
+		if(!pre->rchild) /* Ç°ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ */
 		{
-			pre->RTag=Thread; /* ºó¼ÌÏßË÷ */
-			pre->rchild=p; /* Ç°ÇýÓÒº¢×ÓÖ¸ÕëÖ¸Ïòºó¼Ì(µ±Ç°½áµãp) */
+			pre->RTag=Thread; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+			pre->rchild=p; /* Ç°ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ç°ï¿½ï¿½ï¿½p) */
 		}
-		pre=p; /* ±£³ÖpreÖ¸ÏòpµÄÇ°Çý */
-		InThreading(p->rchild); /* µÝ¹éÓÒ×ÓÊ÷ÏßË÷»¯ */
+		pre=p; /* ï¿½ï¿½ï¿½ï¿½preÖ¸ï¿½ï¿½pï¿½ï¿½Ç°ï¿½ï¿½ */
+		InThreading(p->rchild); /* ï¿½Ý¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	}
 }
 
-/* ÖÐÐò±éÀú¶þ²æÊ÷T,²¢½«ÆäÖÐÐòÏßË÷»¯,ThrtÖ¸ÏòÍ·½áµã */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ThrtÖ¸ï¿½ï¿½Í·ï¿½ï¿½ï¿½ */
 Status InOrderThreading(BiThrTree *Thrt,BiThrTree T)
 { 
 	*Thrt=(BiThrTree)malloc(sizeof(BiThrNode));
 	if(!*Thrt)
 		exit(OVERFLOW);
-	(*Thrt)->LTag=Link; /* ½¨Í·½áµã */
+	(*Thrt)->LTag=Link; /* ï¿½ï¿½Í·ï¿½ï¿½ï¿½ */
 	(*Thrt)->RTag=Thread;
-	(*Thrt)->rchild=(*Thrt); /* ÓÒÖ¸Õë»ØÖ¸ */
-	if(!T) /* Èô¶þ²æÊ÷¿Õ,Ôò×óÖ¸Õë»ØÖ¸ */
+	(*Thrt)->rchild=(*Thrt); /* ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ö¸ */
+	if(!T) /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ö¸ */
 		(*Thrt)->lchild=*Thrt;
 	else
 	{
 		(*Thrt)->lchild=T;
 		pre=(*Thrt);
-		InThreading(T); /* ÖÐÐò±éÀú½øÐÐÖÐÐòÏßË÷»¯ */
+		InThreading(T); /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		pre->rchild=*Thrt;
-		pre->RTag=Thread; /* ×îºóÒ»¸ö½áµãÏßË÷»¯ */
+		pre->RTag=Thread; /* ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		(*Thrt)->rchild=pre;
 	}
 	return OK;
 }
 
-/* ÖÐÐò±éÀú¶þ²æÏßË÷Ê÷T(Í·½áµã)µÄ·ÇµÝ¹éËã·¨ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T(Í·ï¿½ï¿½ï¿½)ï¿½Ä·ÇµÝ¹ï¿½ï¿½ã·¨ */
 Status InOrderTraverse_Thr(BiThrTree T)
 { 
 	BiThrTree p;
-	p=T->lchild; /* pÖ¸Ïò¸ù½áµã */
+	p=T->lchild; /* pÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	while(p!=T)
-	{ /* ¿ÕÊ÷»ò±éÀú½áÊøÊ±,p==T */
+	{ /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±,p==T */
 		while(p->LTag==Link)
 			p=p->lchild;
-		if(!visit(p->data)) /* ·ÃÎÊÆä×ó×ÓÊ÷Îª¿ÕµÄ½áµã */
+		if(!visit(p->data)) /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ÕµÄ½ï¿½ï¿½ */
 			return ERROR;
 		while(p->RTag==Thread&&p->rchild!=T)
 		{
 			p=p->rchild;
-			visit(p->data); /* ·ÃÎÊºó¼Ì½áµã */
+			visit(p->data); /* ï¿½ï¿½ï¿½Êºï¿½Ì½ï¿½ï¿½ */
 		}
 		p=p->rchild;
 	}
@@ -126,11 +126,11 @@ Status InOrderTraverse_Thr(BiThrTree T)
 int main()
 {
 	BiThrTree H,T;
-	printf("Çë°´Ç°ÐòÊäÈë¶þ²æÊ÷(Èç:'ABDH##I##EJ###CF##G##')\n");
- 	CreateBiThrTree(&T); /* °´Ç°Ðò²úÉú¶þ²æÊ÷ */
-	InOrderThreading(&H,T); /* ÖÐÐò±éÀú,²¢ÖÐÐòÏßË÷»¯¶þ²æÊ÷ */
-	printf("ÖÐÐò±éÀú(Êä³ö)¶þ²æÏßË÷Ê÷:\n");
-	InOrderTraverse_Thr(H); /* ÖÐÐò±éÀú(Êä³ö)¶þ²æÏßË÷Ê÷ */
+	printf("ï¿½ë°´Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½:'ABDH##I##EJ###CF##G##')\n");
+	 CreateBiThrTree(&T); /* ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	InOrderThreading(&H,T); /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\n");
+	InOrderTraverse_Thr(H); /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	printf("\n");
 	
 	return 0;

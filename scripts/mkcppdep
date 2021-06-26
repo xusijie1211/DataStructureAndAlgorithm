@@ -20,11 +20,11 @@ FLAGS=$(echo $2)
 g++ -M $FLAGS $path $file -o ${name}.tmp
 
 if [ -f ${name}.tmp ]; then
-    echo -n ${_PDIR}/ && cat ${name}.tmp > ${name}.temp
-    nline=$(cat ${name}.tmp | wc -l)
-    sed -e "s,\(\$*\)\.o[ :]*,\1.o ${name} : \$(wildcard ,g"  -e "${nline}s/\$/)/" < ${name}.temp
-    rm -f ${name}.tmp
-    rm -f ${name}.temp
+	echo -n ${_PDIR}/ && cat ${name}.tmp > ${name}.temp
+	nline=$(cat ${name}.tmp | wc -l)
+	sed -e "s,\(\$*\)\.o[ :]*,\1.o ${name} : \$(wildcard ,g"  -e "${nline}s/\$/)/" < ${name}.temp
+	rm -f ${name}.tmp
+	rm -f ${name}.temp
 else
    #echo "Make $1.d fail!!!!!"
    exit

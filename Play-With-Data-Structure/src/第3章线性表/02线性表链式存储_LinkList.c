@@ -1,6 +1,6 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "string.h"
-#include "ctype.h"      
+#include "ctype.h"	  
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -11,282 +11,282 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 20 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 20 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
-typedef int Status;/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef int ElemType;/* ElemTypeÀàÐÍ¸ù¾ÝÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int Status;/* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½OKï¿½ï¿½ */
+typedef int ElemType;/* ElemTypeï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªint */
 
 
 Status visit(ElemType c)
 {
-    printf("%d ",c);
-    return OK;
+	printf("%d ",c);
+	return OK;
 }
 
 typedef struct Node
 {
-    ElemType data;
-    struct Node *next;
+	ElemType data;
+	struct Node *next;
 }Node;
-typedef struct Node *LinkList; /* ¶¨ÒåLinkList */
+typedef struct Node *LinkList; /* ï¿½ï¿½ï¿½ï¿½LinkList */
 
-/* ³õÊ¼»¯Ë³ÐòÏßÐÔ±í */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ */
 Status InitList(LinkList *L) 
 { 
-    *L=(LinkList)malloc(sizeof(Node)); /* ²úÉúÍ·½áµã,²¢Ê¹LÖ¸Ïò´ËÍ·½áµã */
-    if(!(*L)) /* ´æ´¢·ÖÅäÊ§°Ü */
-            return ERROR;
-    (*L)->next=NULL; /* Ö¸ÕëÓòÎª¿Õ */
+	*L=(LinkList)malloc(sizeof(Node)); /* ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½,ï¿½ï¿½Ê¹LÖ¸ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ */
+	if(!(*L)) /* ï¿½æ´¢ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */
+			return ERROR;
+	(*L)->next=NULL; /* Ö¸ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ */
 
-    return OK;
+	return OK;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ¡£²Ù×÷½á¹û£ºÈôLÎª¿Õ±í£¬Ôò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½Ú¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½LÎªï¿½Õ±ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½TRUEï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½FALSE */
 Status ListEmpty(LinkList L)
 { 
-    if(L->next)
-            return FALSE;
-    else
-            return TRUE;
+	if(L->next)
+			return FALSE;
+	else
+			return TRUE;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ¡£²Ù×÷½á¹û£º½«LÖØÖÃÎª¿Õ±í */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½Ú¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½Îªï¿½Õ±ï¿½ */
 Status ClearList(LinkList *L)
 { 
 	LinkList p,q;
-	p=(*L)->next;           /*  pÖ¸ÏòµÚÒ»¸ö½áµã */
-	while(p)                /*  Ã»µ½±íÎ² */
+	p=(*L)->next;		   /*  pÖ¸ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	while(p)				/*  Ã»ï¿½ï¿½ï¿½ï¿½Î² */
 	{
 		q=p->next;
 		free(p);
 		p=q;
 	}
-	(*L)->next=NULL;        /* Í·½áµãÖ¸ÕëÓòÎª¿Õ */
+	(*L)->next=NULL;		/* Í·ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ */
 	return OK;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ¡£²Ù×÷½á¹û£º·µ»ØLÖÐÊý¾ÝÔªËØ¸öÊý */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½Ú¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ */
 int ListLength(LinkList L)
 {
-    int i=0;
-    LinkList p=L->next; /* pÖ¸ÏòµÚÒ»¸ö½áµã */
-    while(p)                        
-    {
-        i++;
-        p=p->next;
-    }
-    return i;
+	int i=0;
+	LinkList p=L->next; /* pÖ¸ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	while(p)						
+	{
+		i++;
+		p=p->next;
+	}
+	return i;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ£¬1¡Üi¡ÜListLength(L) */
-/* ²Ù×÷½á¹û£ºÓÃe·µ»ØLÖÐµÚi¸öÊý¾ÝÔªËØµÄÖµ */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½Ú£ï¿½1ï¿½ï¿½iï¿½ï¿½ListLength(L) */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½Lï¿½Ðµï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½Öµ */
 Status GetElem(LinkList L,int i,ElemType *e)
 {
 	int j;
-	LinkList p;		/* ÉùÃ÷Ò»½áµãp */
-	p = L->next;		/* ÈÃpÖ¸ÏòÁ´±íLµÄµÚÒ»¸ö½áµã */
-	j = 1;		/*  jÎª¼ÆÊýÆ÷ */
-	while (p && j<i)  /* p²»Îª¿Õ»òÕß¼ÆÊýÆ÷j»¹Ã»ÓÐµÈÓÚiÊ±£¬Ñ­»·¼ÌÐø */
+	LinkList p;		/* ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½p */
+	p = L->next;		/* ï¿½ï¿½pÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Äµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	j = 1;		/*  jÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	while (p && j<i)  /* pï¿½ï¿½Îªï¿½Õ»ï¿½ï¿½ß¼ï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½Ã»ï¿½Ðµï¿½ï¿½ï¿½iÊ±ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	{   
-		p = p->next;  /* ÈÃpÖ¸ÏòÏÂÒ»¸ö½áµã */
+		p = p->next;  /* ï¿½ï¿½pÖ¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ */
 		++j;
 	}
 	if ( !p || j>i ) 
-		return ERROR;  /*  µÚi¸öÔªËØ²»´æÔÚ */
-	*e = p->data;   /*  È¡µÚi¸öÔªËØµÄÊý¾Ý */
+		return ERROR;  /*  ï¿½ï¿½iï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	*e = p->data;   /*  È¡ï¿½ï¿½iï¿½ï¿½Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ */
 	return OK;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ */
-/* ²Ù×÷½á¹û£º·µ»ØLÖÐµÚ1¸öÓëeÂú×ã¹ØÏµµÄÊý¾ÝÔªËØµÄÎ»Ðò¡£ */
-/* ÈôÕâÑùµÄÊý¾ÝÔªËØ²»´æÔÚ£¬Ôò·µ»ØÖµÎª0 */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Ðµï¿½1ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½Î»ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ò·µ»ï¿½ÖµÎª0 */
 int LocateElem(LinkList L,ElemType e)
 {
-    int i=0;
-    LinkList p=L->next;
-    while(p)
-    {
-        i++;
-        if(p->data==e) /* ÕÒµ½ÕâÑùµÄÊý¾ÝÔªËØ */
-                return i;
-        p=p->next;
-    }
+	int i=0;
+	LinkList p=L->next;
+	while(p)
+	{
+		i++;
+		if(p->data==e) /* ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ */
+				return i;
+		p=p->next;
+	}
 
-    return 0;
+	return 0;
 }
 
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ,1¡Üi¡ÜListLength(L)£¬ */
-/* ²Ù×÷½á¹û£ºÔÚLÖÐµÚi¸öÎ»ÖÃÖ®Ç°²åÈëÐÂµÄÊý¾ÝÔªËØe£¬LµÄ³¤¶È¼Ó1 */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½ï¿½,1ï¿½ï¿½iï¿½ï¿½ListLength(L)ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Ðµï¿½iï¿½ï¿½Î»ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½eï¿½ï¿½Lï¿½Ä³ï¿½ï¿½È¼ï¿½1 */
 Status ListInsert(LinkList *L,int i,ElemType e)
 { 
 	int j;
 	LinkList p,s;
 	p = *L;   
 	j = 1;
-	while (p && j < i)     /* Ñ°ÕÒµÚi¸ö½áµã */
+	while (p && j < i)	 /* Ñ°ï¿½Òµï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ */
 	{
 		p = p->next;
 		++j;
 	} 
 	if (!p || j > i) 
-		return ERROR;   /* µÚi¸öÔªËØ²»´æÔÚ */
-	s = (LinkList)malloc(sizeof(Node));  /*  Éú³ÉÐÂ½áµã(CÓïÑÔ±ê×¼º¯Êý) */
+		return ERROR;   /* ï¿½ï¿½iï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	s = (LinkList)malloc(sizeof(Node));  /*  ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½(Cï¿½ï¿½ï¿½Ô±ï¿½×¼ï¿½ï¿½ï¿½ï¿½) */
 	s->data = e;  
-	s->next = p->next;      /* ½«pµÄºó¼Ì½áµã¸³Öµ¸øsµÄºó¼Ì  */
-	p->next = s;          /* ½«s¸³Öµ¸øpµÄºó¼Ì */
+	s->next = p->next;	  /* ï¿½ï¿½pï¿½Äºï¿½Ì½ï¿½ã¸³Öµï¿½ï¿½sï¿½Äºï¿½ï¿½  */
+	p->next = s;		  /* ï¿½ï¿½sï¿½ï¿½Öµï¿½ï¿½pï¿½Äºï¿½ï¿½ */
 	return OK;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ£¬1¡Üi¡ÜListLength(L) */
-/* ²Ù×÷½á¹û£ºÉ¾³ýLµÄµÚi¸öÊý¾ÝÔªËØ£¬²¢ÓÃe·µ»ØÆäÖµ£¬LµÄ³¤¶È¼õ1 */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½Ú£ï¿½1ï¿½ï¿½iï¿½ï¿½ListLength(L) */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Lï¿½Äµï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Lï¿½Ä³ï¿½ï¿½È¼ï¿½1 */
 Status ListDelete(LinkList *L,int i,ElemType *e) 
 { 
 	int j;
 	LinkList p,q;
 	p = *L;
 	j = 1;
-	while (p->next && j < i)	/* ±éÀúÑ°ÕÒµÚi¸öÔªËØ */
+	while (p->next && j < i)	/* ï¿½ï¿½ï¿½ï¿½Ñ°ï¿½Òµï¿½iï¿½ï¿½Ôªï¿½ï¿½ */
 	{
-        p = p->next;
-        ++j;
+		p = p->next;
+		++j;
 	}
 	if (!(p->next) || j > i) 
-	    return ERROR;           /* µÚi¸öÔªËØ²»´æÔÚ */
+		return ERROR;		   /* ï¿½ï¿½iï¿½ï¿½Ôªï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	q = p->next;
-	p->next = q->next;			/* ½«qµÄºó¼Ì¸³Öµ¸øpµÄºó¼Ì */
-	*e = q->data;               /* ½«q½áµãÖÐµÄÊý¾Ý¸øe */
-	free(q);                    /* ÈÃÏµÍ³»ØÊÕ´Ë½áµã£¬ÊÍ·ÅÄÚ´æ */
+	p->next = q->next;			/* ï¿½ï¿½qï¿½Äºï¿½Ì¸ï¿½Öµï¿½ï¿½pï¿½Äºï¿½ï¿½ */
+	*e = q->data;			   /* ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½Ý¸ï¿½e */
+	free(q);					/* ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½Õ´Ë½ï¿½ã£¬ï¿½Í·ï¿½ï¿½Ú´ï¿½ */
 	return OK;
 }
 
-/* ³õÊ¼Ìõ¼þ£ºË³ÐòÏßÐÔ±íLÒÑ´æÔÚ */
-/* ²Ù×÷½á¹û£ºÒÀ´Î¶ÔLµÄÃ¿¸öÊý¾ÝÔªËØÊä³ö */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½Ñ´ï¿½ï¿½ï¿½ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½Lï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ */
 Status ListTraverse(LinkList L)
 {
-    LinkList p=L->next;
-    while(p)
-    {
-        visit(p->data);
-        p=p->next;
-    }
-    printf("\n");
-    return OK;
+	LinkList p=L->next;
+	while(p)
+	{
+		visit(p->data);
+		p=p->next;
+	}
+	printf("\n");
+	return OK;
 }
 
-/*  Ëæ»ú²úÉún¸öÔªËØµÄÖµ£¬½¨Á¢´ø±íÍ·½áµãµÄµ¥Á´ÏßÐÔ±íL£¨Í·²å·¨£© */
+/*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½Ôªï¿½Øµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½ï¿½Í·ï¿½å·¨ï¿½ï¿½ */
 void CreateListHead(LinkList *L, int n) 
 {
 	LinkList p;
 	int i;
-	srand(time(0));                         /* ³õÊ¼»¯Ëæ»úÊýÖÖ×Ó */
+	srand(time(0));						 /* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	*L = (LinkList)malloc(sizeof(Node));
-	(*L)->next = NULL;                      /*  ÏÈ½¨Á¢Ò»¸ö´øÍ·½áµãµÄµ¥Á´±í */
+	(*L)->next = NULL;					  /*  ï¿½È½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ */
 	for (i=0; i<n; i++) 
 	{
-		p = (LinkList)malloc(sizeof(Node)); /*  Éú³ÉÐÂ½áµã */
-		p->data = rand()%100+1;             /*  Ëæ»úÉú³É100ÒÔÄÚµÄÊý×Ö */
-		p->next = (*L)->next;    
-		(*L)->next = p;						/*  ²åÈëµ½±íÍ· */
+		p = (LinkList)malloc(sizeof(Node)); /*  ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ */
+		p->data = rand()%100+1;			 /*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ */
+		p->next = (*L)->next;	
+		(*L)->next = p;						/*  ï¿½ï¿½ï¿½ëµ½ï¿½ï¿½Í· */
 	}
 }
 
-/*  Ëæ»ú²úÉún¸öÔªËØµÄÖµ£¬½¨Á¢´ø±íÍ·½áµãµÄµ¥Á´ÏßÐÔ±íL£¨Î²²å·¨£© */
+/*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½Ôªï¿½Øµï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Lï¿½ï¿½Î²ï¿½å·¨ï¿½ï¿½ */
 void CreateListTail(LinkList *L, int n) 
 {
 	LinkList p,r;
 	int i;
-	srand(time(0));                      /* ³õÊ¼»¯Ëæ»úÊýÖÖ×Ó */
-	*L = (LinkList)malloc(sizeof(Node)); /* LÎªÕû¸öÏßÐÔ±í */
-	r=*L;                                /* rÎªÖ¸ÏòÎ²²¿µÄ½áµã */
+	srand(time(0));					  /* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	*L = (LinkList)malloc(sizeof(Node)); /* LÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ */
+	r=*L;								/* rÎªÖ¸ï¿½ï¿½Î²ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ */
 	for (i=0; i<n; i++) 
 	{
-		p = (Node *)malloc(sizeof(Node)); /*  Éú³ÉÐÂ½áµã */
-		p->data = rand()%100+1;           /*  Ëæ»úÉú³É100ÒÔÄÚµÄÊý×Ö */
-		r->next=p;                        /* ½«±íÎ²ÖÕ¶Ë½áµãµÄÖ¸ÕëÖ¸ÏòÐÂ½áµã */
-		r = p;                            /* ½«µ±Ç°µÄÐÂ½áµã¶¨ÒåÎª±íÎ²ÖÕ¶Ë½áµã */
+		p = (Node *)malloc(sizeof(Node)); /*  ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ */
+		p->data = rand()%100+1;		   /*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ */
+		r->next=p;						/* ï¿½ï¿½ï¿½ï¿½Î²ï¿½Õ¶Ë½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â½ï¿½ï¿½ */
+		r = p;							/* ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Â½ï¿½ã¶¨ï¿½ï¿½Îªï¿½ï¿½Î²ï¿½Õ¶Ë½ï¿½ï¿½ */
 	}
-	r->next = NULL;                       /* ±íÊ¾µ±Ç°Á´±í½áÊø */
+	r->next = NULL;					   /* ï¿½ï¿½Ê¾ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
 
 int main()
-{        
-    LinkList L;
-    ElemType e;
-    Status i;
-    int j,k;
-    i=InitList(&L);
-    printf("³õÊ¼»¯Lºó£ºListLength(L)=%d\n",ListLength(L));
-    for(j=1;j<=5;j++)
-            i=ListInsert(&L,1,j);
-    printf("ÔÚLµÄ±íÍ·ÒÀ´Î²åÈë1¡«5ºó£ºL.data=");
-    ListTraverse(L); 
+{		
+	LinkList L;
+	ElemType e;
+	Status i;
+	int j,k;
+	i=InitList(&L);
+	printf("ï¿½ï¿½Ê¼ï¿½ï¿½Lï¿½ï¿½ListLength(L)=%d\n",ListLength(L));
+	for(j=1;j<=5;j++)
+			i=ListInsert(&L,1,j);
+	printf("ï¿½ï¿½Lï¿½Ä±ï¿½Í·ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½1ï¿½ï¿½5ï¿½ï¿½L.data=");
+	ListTraverse(L); 
 
-    printf("ListLength(L)=%d \n",ListLength(L));
-    i=ListEmpty(L);
-    printf("LÊÇ·ñ¿Õ£ºi=%d(1:ÊÇ 0:·ñ)\n",i);
+	printf("ListLength(L)=%d \n",ListLength(L));
+	i=ListEmpty(L);
+	printf("Lï¿½Ç·ï¿½Õ£ï¿½i=%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)\n",i);
 
-    i=ClearList(&L);
-    printf("Çå¿ÕLºó£ºListLength(L)=%d\n",ListLength(L));
-    i=ListEmpty(L);
-    printf("LÊÇ·ñ¿Õ£ºi=%d(1:ÊÇ 0:·ñ)\n",i);
+	i=ClearList(&L);
+	printf("ï¿½ï¿½ï¿½Lï¿½ï¿½ListLength(L)=%d\n",ListLength(L));
+	i=ListEmpty(L);
+	printf("Lï¿½Ç·ï¿½Õ£ï¿½i=%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)\n",i);
 
-    for(j=1;j<=10;j++)
-            ListInsert(&L,j,j);
-    printf("ÔÚLµÄ±íÎ²ÒÀ´Î²åÈë1¡«10ºó£ºL.data=");
-    ListTraverse(L); 
+	for(j=1;j<=10;j++)
+			ListInsert(&L,j,j);
+	printf("ï¿½ï¿½Lï¿½Ä±ï¿½Î²ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½1ï¿½ï¿½10ï¿½ï¿½L.data=");
+	ListTraverse(L); 
 
-    printf("ListLength(L)=%d \n",ListLength(L));
+	printf("ListLength(L)=%d \n",ListLength(L));
 
-    ListInsert(&L,1,0);
-    printf("ÔÚLµÄ±íÍ·²åÈë0ºó£ºL.data=");
-    ListTraverse(L); 
-    printf("ListLength(L)=%d \n",ListLength(L));
+	ListInsert(&L,1,0);
+	printf("ï¿½ï¿½Lï¿½Ä±ï¿½Í·ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½L.data=");
+	ListTraverse(L); 
+	printf("ListLength(L)=%d \n",ListLength(L));
 
-    GetElem(L,5,&e);
-    printf("µÚ5¸öÔªËØµÄÖµÎª£º%d\n",e);
-    for(j=3;j<=4;j++)
-    {
-            k=LocateElem(L,j);
-            if(k)
-                    printf("µÚ%d¸öÔªËØµÄÖµÎª%d\n",k,j);
-            else
-                    printf("Ã»ÓÐÖµÎª%dµÄÔªËØ\n",j);
-    }
-    
+	GetElem(L,5,&e);
+	printf("ï¿½ï¿½5ï¿½ï¿½Ôªï¿½Øµï¿½ÖµÎªï¿½ï¿½%d\n",e);
+	for(j=3;j<=4;j++)
+	{
+			k=LocateElem(L,j);
+			if(k)
+					printf("ï¿½ï¿½%dï¿½ï¿½Ôªï¿½Øµï¿½ÖµÎª%d\n",k,j);
+			else
+					printf("Ã»ï¿½ï¿½ÖµÎª%dï¿½ï¿½Ôªï¿½ï¿½\n",j);
+	}
+	
 
-    k=ListLength(L); /* kÎª±í³¤ */
-    for(j=k+1;j>=k;j--)
-    {
-            i=ListDelete(&L,j,&e); /* É¾³ýµÚj¸öÊý¾Ý */
-            if(i==ERROR)
-                    printf("É¾³ýµÚ%d¸öÊý¾ÝÊ§°Ü\n",j);
-            else
-                    printf("É¾³ýµÚ%d¸öµÄÔªËØÖµÎª£º%d\n",j,e);
-    }
-    printf("ÒÀ´ÎÊä³öLµÄÔªËØ£º");
-    ListTraverse(L); 
+	k=ListLength(L); /* kÎªï¿½ï¿½ï¿½ï¿½ */
+	for(j=k+1;j>=k;j--)
+	{
+			i=ListDelete(&L,j,&e); /* É¾ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+			if(i==ERROR)
+					printf("É¾ï¿½ï¿½ï¿½ï¿½%dï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½\n",j);
+			else
+					printf("É¾ï¿½ï¿½ï¿½ï¿½%dï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ÖµÎªï¿½ï¿½%d\n",j,e);
+	}
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½Ôªï¿½Ø£ï¿½");
+	ListTraverse(L); 
 
-    j=5;
-    ListDelete(&L,j,&e); /* É¾³ýµÚ5¸öÊý¾Ý */
-    printf("É¾³ýµÚ%d¸öµÄÔªËØÖµÎª£º%d\n",j,e);
+	j=5;
+	ListDelete(&L,j,&e); /* É¾ï¿½ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+	printf("É¾ï¿½ï¿½ï¿½ï¿½%dï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½ÖµÎªï¿½ï¿½%d\n",j,e);
 
-    printf("ÒÀ´ÎÊä³öLµÄÔªËØ£º");
-    ListTraverse(L); 
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½Ôªï¿½Ø£ï¿½");
+	ListTraverse(L); 
 
-    i=ClearList(&L);
-    printf("\nÇå¿ÕLºó£ºListLength(L)=%d\n",ListLength(L));
-    CreateListHead(&L,20);
-    printf("ÕûÌå´´½¨LµÄÔªËØ(Í·²å·¨)£º");
-    ListTraverse(L); 
-    
-    i=ClearList(&L);
-    printf("\nÉ¾³ýLºó£ºListLength(L)=%d\n",ListLength(L));
-    CreateListTail(&L,20);
-    printf("ÕûÌå´´½¨LµÄÔªËØ(Î²²å·¨)£º");
-    ListTraverse(L); 
+	i=ClearList(&L);
+	printf("\nï¿½ï¿½ï¿½Lï¿½ï¿½ListLength(L)=%d\n",ListLength(L));
+	CreateListHead(&L,20);
+	printf("ï¿½ï¿½ï¿½å´´ï¿½ï¿½Lï¿½ï¿½Ôªï¿½ï¿½(Í·ï¿½å·¨)ï¿½ï¿½");
+	ListTraverse(L); 
+	
+	i=ClearList(&L);
+	printf("\nÉ¾ï¿½ï¿½Lï¿½ï¿½ListLength(L)=%d\n",ListLength(L));
+	CreateListTail(&L,20);
+	printf("ï¿½ï¿½ï¿½å´´ï¿½ï¿½Lï¿½ï¿½Ôªï¿½ï¿½(Î²ï¿½å·¨)ï¿½ï¿½");
+	ListTraverse(L); 
 
 
-    return 0;
+	return 0;
 }
 

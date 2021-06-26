@@ -4,9 +4,9 @@
 typedef int data_t;
 typedef struct
 {
-	data_t data[MAXSIZE];
-	int front;//队头位置
-	int rear;//队尾位置
+    data_t data[MAXSIZE];
+    int front;//队头位置
+    int rear;//队尾位置
 }SqQueue;
 
 #endif

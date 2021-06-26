@@ -1,7 +1,7 @@
 #include "string.h"
-#include "ctype.h"      
+#include "ctype.h"	  
 
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -12,147 +12,147 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 1000 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 1000 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
-typedef int Status;           /* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
-typedef char ElemType;        /* ElemTypeÀàÐÍ¸ù¾ÝÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªchar */
+typedef int Status;		   /* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½OKï¿½ï¿½ */
+typedef char ElemType;		/* ElemTypeï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªchar */
 
 
 Status visit(ElemType c)
 {
-    printf("%c ",c);
-    return OK;
+	printf("%c ",c);
+	return OK;
 }
 
-/* ÏßÐÔ±íµÄ¾²Ì¬Á´±í´æ´¢½á¹¹ */
+/* ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ä¾ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½æ´¢ï¿½á¹¹ */
 typedef struct 
 {
-    ElemType data;
-    int cur;  /* ÓÎ±ê(Cursor) £¬Îª0Ê±±íÊ¾ÎÞÖ¸Ïò */
+	ElemType data;
+	int cur;  /* ï¿½Î±ï¿½(Cursor) ï¿½ï¿½Îª0Ê±ï¿½ï¿½Ê¾ï¿½ï¿½Ö¸ï¿½ï¿½ */
 } Component,StaticLinkList[MAXSIZE];
 
 
-/* ½«Ò»Î¬Êý×éspaceÖÐ¸÷·ÖÁ¿Á´³ÉÒ»¸ö±¸ÓÃÁ´±í£¬space[0].curÎªÍ·Ö¸Õë£¬"0"±íÊ¾¿ÕÖ¸Õë */
+/* ï¿½ï¿½Ò»Î¬ï¿½ï¿½ï¿½ï¿½spaceï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½space[0].curÎªÍ·Ö¸ï¿½ë£¬"0"ï¿½ï¿½Ê¾ï¿½ï¿½Ö¸ï¿½ï¿½ */
 Status InitList(StaticLinkList space) 
 {
 	int i;
 	for (i=0; i<MAXSIZE-1; i++)  
 		space[i].cur = i+1;
-	space[MAXSIZE-1].cur = 0; /* Ä¿Ç°¾²Ì¬Á´±íÎª¿Õ£¬×îºóÒ»¸öÔªËØµÄcurÎª0 */
+	space[MAXSIZE-1].cur = 0; /* Ä¿Ç°ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½curÎª0 */
 	return OK;
 }
 
 
-/* Èô±¸ÓÃ¿Õ¼äÁ´±í·Ç¿Õ£¬Ôò·µ»Ø·ÖÅäµÄ½áµãÏÂ±ê£¬·ñÔò·µ»Ø0 */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿Õ£ï¿½ï¿½ò·µ»Ø·ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½Â±ê£¬ï¿½ï¿½ï¿½ò·µ»ï¿½0 */
 int Malloc_SSL(StaticLinkList space) 
 { 
-	int i = space[0].cur;           		/* µ±Ç°Êý×éµÚÒ»¸öÔªËØµÄcur´æµÄÖµ */
-	                                		/* ¾ÍÊÇÒª·µ»ØµÄµÚÒ»¸ö±¸ÓÃ¿ÕÏÐµÄÏÂ±ê */
-	if (space[0]. cur)         
-	    space[0]. cur = space[i].cur;       /* ÓÉÓÚÒªÄÃ³öÒ»¸ö·ÖÁ¿À´Ê¹ÓÃÁË£¬ */
-	                                        /* ËùÒÔÎÒÃÇ¾ÍµÃ°ÑËüµÄÏÂÒ»¸ö */
-	                                        /* ·ÖÁ¿ÓÃÀ´×ö±¸ÓÃ */
+	int i = space[0].cur;				   /* ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½curï¿½ï¿½ï¿½Öµ */
+											/* ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ØµÄµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Ðµï¿½ï¿½Â±ï¿½ */
+	if (space[0]. cur)		 
+		space[0]. cur = space[i].cur;	   /* ï¿½ï¿½ï¿½ï¿½Òªï¿½Ã³ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ë£ï¿½ */
+											/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ÍµÃ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ */
+											/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	return i;
 }
 
 
-/*  ½«ÏÂ±êÎªkµÄ¿ÕÏÐ½áµã»ØÊÕµ½±¸ÓÃÁ´±í */
+/*  ï¿½ï¿½ï¿½Â±ï¿½Îªkï¿½Ä¿ï¿½ï¿½Ð½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 void Free_SSL(StaticLinkList space, int k) 
 {  
-    space[k].cur = space[0].cur;    /* °ÑµÚÒ»¸öÔªËØµÄcurÖµ¸³¸øÒªÉ¾³ýµÄ·ÖÁ¿cur */
-    space[0].cur = k;               /* °ÑÒªÉ¾³ýµÄ·ÖÁ¿ÏÂ±ê¸³Öµ¸øµÚÒ»¸öÔªËØµÄcur */
+	space[k].cur = space[0].cur;	/* ï¿½Ñµï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½curÖµï¿½ï¿½ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½cur */
+	space[0].cur = k;			   /* ï¿½ï¿½ÒªÉ¾ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½Â±ê¸³Öµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½cur */
 }
 
-/* ³õÊ¼Ìõ¼þ£º¾²Ì¬Á´±íLÒÑ´æÔÚ¡£²Ù×÷½á¹û£º·µ»ØLÖÐÊý¾ÝÔªËØ¸öÊý */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½Lï¿½Ñ´ï¿½ï¿½Ú¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ */
 int ListLength(StaticLinkList L)
 {
-    int j=0;
-    int i=L[MAXSIZE-1].cur;
-    while(i)
-    {
-        i=L[i].cur;
-        j++;
-    }
-    return j;
+	int j=0;
+	int i=L[MAXSIZE-1].cur;
+	while(i)
+	{
+		i=L[i].cur;
+		j++;
+	}
+	return j;
 }
 
-/*  ÔÚLÖÐµÚi¸öÔªËØÖ®Ç°²åÈëÐÂµÄÊý¾ÝÔªËØe   */
+/*  ï¿½ï¿½Lï¿½Ðµï¿½iï¿½ï¿½Ôªï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½e   */
 Status ListInsert(StaticLinkList L, int i, ElemType e)   
 {  
-    int j, k, l;   
-    k = MAXSIZE - 1;   /* ×¢ÒâkÊ×ÏÈÊÇ×îºóÒ»¸öÔªËØµÄÏÂ±ê */
-    if (i < 1 || i > ListLength(L) + 1)   
-        return ERROR;   
-    j = Malloc_SSL(L);   /* »ñµÃ¿ÕÏÐ·ÖÁ¿µÄÏÂ±ê */
-    if (j)   
-    {   
-		L[j].data = e;   /* ½«Êý¾Ý¸³Öµ¸ø´Ë·ÖÁ¿µÄdata */
-		for(l = 1; l <= i - 1; l++)   /* ÕÒµ½µÚi¸öÔªËØÖ®Ç°µÄÎ»ÖÃ */
-		   k = L[k].cur;           
-		L[j].cur = L[k].cur;    /* °ÑµÚi¸öÔªËØÖ®Ç°µÄcur¸³Öµ¸øÐÂÔªËØµÄcur */
-		L[k].cur = j;           /* °ÑÐÂÔªËØµÄÏÂ±ê¸³Öµ¸øµÚi¸öÔªËØÖ®Ç°ÔªËØµÄur */
+	int j, k, l;   
+	k = MAXSIZE - 1;   /* ×¢ï¿½ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½Â±ï¿½ */
+	if (i < 1 || i > ListLength(L) + 1)   
+		return ERROR;   
+	j = Malloc_SSL(L);   /* ï¿½ï¿½Ã¿ï¿½ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ */
+	if (j)   
+	{   
+		L[j].data = e;   /* ï¿½ï¿½ï¿½ï¿½ï¿½Ý¸ï¿½Öµï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½data */
+		for(l = 1; l <= i - 1; l++)   /* ï¿½Òµï¿½ï¿½ï¿½iï¿½ï¿½Ôªï¿½ï¿½Ö®Ç°ï¿½ï¿½Î»ï¿½ï¿½ */
+		   k = L[k].cur;		   
+		L[j].cur = L[k].cur;	/* ï¿½Ñµï¿½iï¿½ï¿½Ôªï¿½ï¿½Ö®Ç°ï¿½ï¿½curï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½cur */
+		L[k].cur = j;		   /* ï¿½ï¿½ï¿½ï¿½Ôªï¿½Øµï¿½ï¿½Â±ê¸³Öµï¿½ï¿½ï¿½ï¿½iï¿½ï¿½Ôªï¿½ï¿½Ö®Ç°Ôªï¿½Øµï¿½ur */
 		return OK;   
-    }   
-    return ERROR;   
+	}   
+	return ERROR;   
 }
 
-/*  É¾³ýÔÚLÖÐµÚi¸öÊý¾ÝÔªËØ   */
+/*  É¾ï¿½ï¿½ï¿½ï¿½Lï¿½Ðµï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½   */
 Status ListDelete(StaticLinkList L, int i)   
 { 
-    int j, k;   
-    if (i < 1 || i > ListLength(L))   
-        return ERROR;   
-    k = MAXSIZE - 1;   
-    for (j = 1; j <= i - 1; j++)   
-        k = L[k].cur;   
-    j = L[k].cur;   
-    L[k].cur = L[j].cur;   
-    Free_SSL(L, j);   
-    return OK;   
+	int j, k;   
+	if (i < 1 || i > ListLength(L))   
+		return ERROR;   
+	k = MAXSIZE - 1;   
+	for (j = 1; j <= i - 1; j++)   
+		k = L[k].cur;   
+	j = L[k].cur;   
+	L[k].cur = L[j].cur;   
+	Free_SSL(L, j);   
+	return OK;   
 } 
 
 Status ListTraverse(StaticLinkList L)
 {
-    int j=0;
-    int i=L[MAXSIZE-1].cur;
-    while(i)
-    {
-            visit(L[i].data);
-            i=L[i].cur;
-            j++;
-    }
-    return j;
-    printf("\n");
-    return OK;
+	int j=0;
+	int i=L[MAXSIZE-1].cur;
+	while(i)
+	{
+			visit(L[i].data);
+			i=L[i].cur;
+			j++;
+	}
+	return j;
+	printf("\n");
+	return OK;
 }
 
 
 int main()
 {
-    StaticLinkList L;
-    Status i;
-    i=InitList(L);
-    printf("³õÊ¼»¯Lºó£ºL.length=%d\n",ListLength(L));
+	StaticLinkList L;
+	Status i;
+	i=InitList(L);
+	printf("ï¿½ï¿½Ê¼ï¿½ï¿½Lï¿½ï¿½L.length=%d\n",ListLength(L));
 
-    i=ListInsert(L,1,'F');
-    i=ListInsert(L,1,'E');
-    i=ListInsert(L,1,'D');
-    i=ListInsert(L,1,'B');
-    i=ListInsert(L,1,'A');
+	i=ListInsert(L,1,'F');
+	i=ListInsert(L,1,'E');
+	i=ListInsert(L,1,'D');
+	i=ListInsert(L,1,'B');
+	i=ListInsert(L,1,'A');
 
-    printf("\nÔÚLµÄ±íÍ·ÒÀ´Î²åÈëFEDBAºó£º\nL.data=");
-    ListTraverse(L); 
+	printf("\nï¿½ï¿½Lï¿½Ä±ï¿½Í·ï¿½ï¿½ï¿½Î²ï¿½ï¿½ï¿½FEDBAï¿½ï¿½\nL.data=");
+	ListTraverse(L); 
 
-    i=ListInsert(L,3,'C');
-    printf("\nÔÚLµÄ¡°B¡±Óë¡°D¡±Ö®¼ä²åÈë¡°C¡±ºó£º\nL.data=");
-    ListTraverse(L); 
+	i=ListInsert(L,3,'C');
+	printf("\nï¿½ï¿½Lï¿½Ä¡ï¿½Bï¿½ï¿½ï¿½ë¡°Dï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ë¡°Cï¿½ï¿½ï¿½ï¿½\nL.data=");
+	ListTraverse(L); 
 
-    i=ListDelete(L,1);
-    printf("\nÔÚLµÄÉ¾³ý¡°A¡±ºó£º\nL.data=");
-    ListTraverse(L); 
+	i=ListDelete(L,1);
+	printf("\nï¿½ï¿½Lï¿½ï¿½É¾ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½\nL.data=");
+	ListTraverse(L); 
 
-    printf("\n");
+	printf("\n");
 
-    return 0;
+	return 0;
 }
 

@@ -15,8 +15,8 @@ NM      := nm
 OBJDUMP := objdump
 
 # GCOV Tools.
-LCOV	:= $(top_srcdir)/scripts/lcov-1.13/bin/lcov
-GENHTML	:= $(top_srcdir)/scripts/lcov-1.13/bin/genhtml
+LCOV    := $(top_srcdir)/scripts/lcov-1.13/bin/lcov
+GENHTML    := $(top_srcdir)/scripts/lcov-1.13/bin/genhtml
 
 export CC CPP LD AR NM OBJDUMP
 

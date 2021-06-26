@@ -4,8 +4,8 @@
 typedef int data_t;
 typedef struct Node
 {
-	data_t data;
-	struct Node *next;
+    data_t data;
+    struct Node *next;
 }Node;
 typedef struct Node *LinkList;
 

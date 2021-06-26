@@ -8,7 +8,7 @@
 
 #define MAXSIZE 100 /* 存储空间初始分配量 */
 
-typedef int Status;		/* Status是函数的类型,其值是函数结果状态代码，如OK等 */
+typedef int Status;        /* Status是函数的类型,其值是函数结果状态代码，如OK等 */
 
 
 
@@ -17,7 +17,7 @@ typedef char TElemType;
 
 typedef struct BiTNode  /* 结点结构 */
 {
-   TElemType data;		/* 结点数据 */
+   TElemType data;        /* 结点数据 */
    struct BiTNode *lchild,*rchild; /* 左右孩子指针 */
 }BiTNode,*BiTree;
 

@@ -1,4 +1,4 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -12,7 +12,7 @@
 #define MAXVEX 20
 #define INFINITY 65535
 
-typedef int Status;	/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */
+typedef int Status;	/* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½OKï¿½ï¿½ */
 
 typedef struct
 {
@@ -24,21 +24,21 @@ typedef struct
 typedef int Patharc[MAXVEX][MAXVEX];
 typedef int ShortPathTable[MAXVEX][MAXVEX];
 
-/* ¹¹¼þÍ¼ */
+/* ï¿½ï¿½ï¿½ï¿½Í¼ */
 void CreateMGraph(MGraph *G)
 {
 	int i, j;
 
-	/* printf("ÇëÊäÈë±ßÊýºÍ¶¥µãÊý:"); */
+	/* printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½:"); */
 	G->numEdges=16;
 	G->numVertexes=9;
 
-	for (i = 0; i < G->numVertexes; i++)/* ³õÊ¼»¯Í¼ */
+	for (i = 0; i < G->numVertexes; i++)/* ï¿½ï¿½Ê¼ï¿½ï¿½Í¼ */
 	{
 		G->vexs[i]=i;
 	}
 
-	for (i = 0; i < G->numVertexes; i++)/* ³õÊ¼»¯Í¼ */
+	for (i = 0; i < G->numVertexes; i++)/* ï¿½ï¿½Ê¼ï¿½ï¿½Í¼ */
 	{
 		for ( j = 0; j < G->numVertexes; j++)
 		{
@@ -80,28 +80,28 @@ void CreateMGraph(MGraph *G)
 
 }
 
-/* FloydËã·¨£¬ÇóÍøÍ¼GÖÐ¸÷¶¥µãvµ½ÆäÓà¶¥µãwµÄ×î¶ÌÂ·¾¶P[v][w]¼°´øÈ¨³¤¶ÈD[v][w]¡£ */    
+/* Floydï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Gï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½à¶¥ï¿½ï¿½wï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½P[v][w]ï¿½ï¿½ï¿½ï¿½È¨ï¿½ï¿½ï¿½ï¿½D[v][w]ï¿½ï¿½ */	
 void ShortestPath_Floyd(MGraph G, Patharc *P, ShortPathTable *D)
-{    
-	int v,w,k;    
-	for(v=0; v<G.numVertexes; ++v) /* ³õÊ¼»¯DÓëP */  
-	{        
+{	
+	int v,w,k;	
+	for(v=0; v<G.numVertexes; ++v) /* ï¿½ï¿½Ê¼ï¿½ï¿½Dï¿½ï¿½P */  
+	{		
 		for(w=0; w<G.numVertexes; ++w)  
 		{
-			(*D)[v][w]=G.arc[v][w];	/* D[v][w]Öµ¼´Îª¶ÔÓ¦µã¼äµÄÈ¨Öµ */
-			(*P)[v][w]=w;				/* ³õÊ¼»¯P */
+			(*D)[v][w]=G.arc[v][w];	/* D[v][w]Öµï¿½ï¿½Îªï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½È¨Öµ */
+			(*P)[v][w]=w;				/* ï¿½ï¿½Ê¼ï¿½ï¿½P */
 		}
 	}
 	for(k=0; k<G.numVertexes; ++k)   
 	{
 		for(v=0; v<G.numVertexes; ++v)  
-		{        
-			for(w=0; w<G.numVertexes; ++w)    
+		{		
+			for(w=0; w<G.numVertexes; ++w)	
 			{
 				if ((*D)[v][w]>(*D)[v][k]+(*D)[k][w])
-				{/* Èç¹û¾­¹ýÏÂ±êÎªk¶¥µãÂ·¾¶±ÈÔ­Á½µã¼äÂ·¾¶¸ü¶Ì */
-					(*D)[v][w]=(*D)[v][k]+(*D)[k][w];/* ½«µ±Ç°Á½µã¼äÈ¨ÖµÉèÎª¸üÐ¡µÄÒ»¸ö */
-					(*P)[v][w]=(*P)[v][k];/* Â·¾¶ÉèÖÃÎª¾­¹ýÏÂ±êÎªkµÄ¶¥µã */
+				{/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½Îªkï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+					(*D)[v][w]=(*D)[v][k]+(*D)[k][w];/* ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½È¨Öµï¿½ï¿½Îªï¿½ï¿½Ð¡ï¿½ï¿½Ò»ï¿½ï¿½ */
+					(*P)[v][w]=(*P)[v][k];/* Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½Îªkï¿½Ä¶ï¿½ï¿½ï¿½ */
 				}
 			}
 		}
@@ -109,48 +109,48 @@ void ShortestPath_Floyd(MGraph G, Patharc *P, ShortPathTable *D)
 }
 
 int main(void)
-{    
+{	
 	int v,w,k;  
-	MGraph G;    
+	MGraph G;	
 	
-	Patharc P;    
-	ShortPathTable D; /* ÇóÄ³µãµ½ÆäÓà¸÷µãµÄ×î¶ÌÂ·¾¶ */   
+	Patharc P;	
+	ShortPathTable D; /* ï¿½ï¿½Ä³ï¿½ãµ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ */   
 	
 	CreateMGraph(&G);
 	
 	ShortestPath_Floyd(G,&P,&D);  
 
-	printf("¸÷¶¥µã¼ä×î¶ÌÂ·¾¶ÈçÏÂ:\n");    
+	printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:\n");	
 	for(v=0; v<G.numVertexes; ++v)   
-	{        
+	{		
 		for(w=v+1; w<G.numVertexes; w++)  
 		{
 			printf("v%d-v%d weight: %d ",v,w,D[v][w]);
-			k=P[v][w];				/* »ñµÃµÚÒ»¸öÂ·¾¶¶¥µãÏÂ±ê */
-			printf(" path: %d",v);	/* ´òÓ¡Ô´µã */
-			while(k!=w)				/* Èç¹ûÂ·¾¶¶¥µãÏÂ±ê²»ÊÇÖÕµã */
+			k=P[v][w];				/* ï¿½ï¿½Ãµï¿½Ò»ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ */
+			printf(" path: %d",v);	/* ï¿½ï¿½Ó¡Ô´ï¿½ï¿½ */
+			while(k!=w)				/* ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ê²»ï¿½ï¿½ï¿½Õµï¿½ */
 			{
-				printf(" -> %d",k);	/* ´òÓ¡Â·¾¶¶¥µã */
-				k=P[k][w];			/* »ñµÃÏÂÒ»¸öÂ·¾¶¶¥µãÏÂ±ê */
+				printf(" -> %d",k);	/* ï¿½ï¿½Ó¡Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+				k=P[k][w];			/* ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ */
 			}
-			printf(" -> %d\n",w);	/* ´òÓ¡ÖÕµã */
+			printf(" -> %d\n",w);	/* ï¿½ï¿½Ó¡ï¿½Õµï¿½ */
 		}
 		printf("\n");
 	}
 
-	printf("×î¶ÌÂ·¾¶D\n");
+	printf("ï¿½ï¿½ï¿½Â·ï¿½ï¿½D\n");
 	for(v=0; v<G.numVertexes; ++v)  
-	{        
-		for(w=0; w<G.numVertexes; ++w)    
+	{		
+		for(w=0; w<G.numVertexes; ++w)	
 		{
 			printf("%d\t",D[v][w]);
 		}
 		printf("\n");
 	}
-	printf("×î¶ÌÂ·¾¶P\n");
+	printf("ï¿½ï¿½ï¿½Â·ï¿½ï¿½P\n");
 	for(v=0; v<G.numVertexes; ++v)  
-	{        
-		for(w=0; w<G.numVertexes; ++w)    
+	{		
+		for(w=0; w<G.numVertexes; ++w)	
 		{
 			printf("%d ",P[v][w]);
 		}

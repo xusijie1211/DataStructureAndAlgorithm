@@ -1,4 +1,4 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -8,139 +8,139 @@
 #define ERROR 0
 #define TRUE 1
 #define FALSE 0
-#define MAXSIZE 20 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 20 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
 typedef int Status; 
 
-typedef int SElemType; /* SElemTypeÀàÐÍ¸ù¾ÝÊµ¼ÊÇé¿ö¶ø¶¨£¬ÕâÀï¼ÙÉèÎªint */
+typedef int SElemType; /* SElemTypeï¿½ï¿½ï¿½Í¸ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªint */
 
 
-/* Á½Õ»¹²Ïí¿Õ¼ä½á¹¹ */
+/* ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½á¹¹ */
 typedef struct 
 {
-        SElemType data[MAXSIZE];
-        int top1;	/* Õ»1Õ»¶¥Ö¸Õë */
-        int top2;	/* Õ»2Õ»¶¥Ö¸Õë */
+		SElemType data[MAXSIZE];
+		int top1;	/* Õ»1Õ»ï¿½ï¿½Ö¸ï¿½ï¿½ */
+		int top2;	/* Õ»2Õ»ï¿½ï¿½Ö¸ï¿½ï¿½ */
 }SqDoubleStack;
 
 
 Status visit(SElemType c)
 {
-        printf("%d ",c);
-        return OK;
+		printf("%d ",c);
+		return OK;
 }
 
-/*  ¹¹ÔìÒ»¸ö¿ÕÕ»S */
+/*  ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Õ»S */
 Status InitStack(SqDoubleStack *S)
 { 
-        S->top1=-1;
-        S->top2=MAXSIZE;
-        return OK;
+		S->top1=-1;
+		S->top2=MAXSIZE;
+		return OK;
 }
 
-/* °ÑSÖÃÎª¿ÕÕ» */
+/* ï¿½ï¿½Sï¿½ï¿½Îªï¿½ï¿½Õ» */
 Status ClearStack(SqDoubleStack *S)
 { 
-        S->top1=-1;
-        S->top2=MAXSIZE;
-        return OK;
+		S->top1=-1;
+		S->top2=MAXSIZE;
+		return OK;
 }
 
-/* ÈôÕ»SÎª¿ÕÕ»£¬Ôò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE */
+/* ï¿½ï¿½Õ»SÎªï¿½ï¿½Õ»ï¿½ï¿½ï¿½ò·µ»ï¿½TRUEï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½FALSE */
 Status StackEmpty(SqDoubleStack S)
 { 
-        if (S.top1==-1 && S.top2==MAXSIZE)
-                return TRUE;
-        else
-                return FALSE;
+		if (S.top1==-1 && S.top2==MAXSIZE)
+				return TRUE;
+		else
+				return FALSE;
 }
 
-/* ·µ»ØSµÄÔªËØ¸öÊý£¬¼´Õ»µÄ³¤¶È */
+/* ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½Ä³ï¿½ï¿½ï¿½ */
 int StackLength(SqDoubleStack S)
 { 
-        return (S.top1+1)+(MAXSIZE-S.top2);
+		return (S.top1+1)+(MAXSIZE-S.top2);
 }
 
-/* ²åÈëÔªËØeÎªÐÂµÄÕ»¶¥ÔªËØ */
+/* ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½eÎªï¿½Âµï¿½Õ»ï¿½ï¿½Ôªï¿½ï¿½ */
 Status Push(SqDoubleStack *S,SElemType e,int stackNumber)
 {
-        if (S->top1+1==S->top2)	/* Õ»ÒÑÂú£¬²»ÄÜÔÙpushÐÂÔªËØÁË */
-                return ERROR;	
-        if (stackNumber==1)			/* Õ»1ÓÐÔªËØ½øÕ» */
-                S->data[++S->top1]=e; /* ÈôÊÇÕ»1ÔòÏÈtop1+1ºó¸øÊý×éÔªËØ¸³Öµ¡£ */
-        else if (stackNumber==2)	/* Õ»2ÓÐÔªËØ½øÕ» */
-                S->data[--S->top2]=e; /* ÈôÊÇÕ»2ÔòÏÈtop2-1ºó¸øÊý×éÔªËØ¸³Öµ¡£ */
-        return OK;
+		if (S->top1+1==S->top2)	/* Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pushï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ */
+				return ERROR;	
+		if (stackNumber==1)			/* Õ»1ï¿½ï¿½Ôªï¿½Ø½ï¿½Õ» */
+				S->data[++S->top1]=e; /* ï¿½ï¿½ï¿½ï¿½Õ»1ï¿½ï¿½ï¿½ï¿½top1+1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½Öµï¿½ï¿½ */
+		else if (stackNumber==2)	/* Õ»2ï¿½ï¿½Ôªï¿½Ø½ï¿½Õ» */
+				S->data[--S->top2]=e; /* ï¿½ï¿½ï¿½ï¿½Õ»2ï¿½ï¿½ï¿½ï¿½top2-1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½Öµï¿½ï¿½ */
+		return OK;
 }
 
-/* ÈôÕ»²»¿Õ£¬ÔòÉ¾³ýSµÄÕ»¶¥ÔªËØ£¬ÓÃe·µ»ØÆäÖµ£¬²¢·µ»ØOK£»·ñÔò·µ»ØERROR */
+/* ï¿½ï¿½Õ»ï¿½ï¿½ï¿½Õ£ï¿½ï¿½ï¿½É¾ï¿½ï¿½Sï¿½ï¿½Õ»ï¿½ï¿½Ôªï¿½Ø£ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OKï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½ERROR */
 Status Pop(SqDoubleStack *S,SElemType *e,int stackNumber)
 { 
-        if (stackNumber==1) 
-        {
-                if (S->top1==-1) 
-                        return ERROR; /* ËµÃ÷Õ»1ÒÑ¾­ÊÇ¿ÕÕ»£¬Òç³ö */
-                *e=S->data[S->top1--]; /* ½«Õ»1µÄÕ»¶¥ÔªËØ³öÕ» */
-        }
-        else if (stackNumber==2)
-        { 
-                if (S->top2==MAXSIZE) 
-                        return ERROR; /* ËµÃ÷Õ»2ÒÑ¾­ÊÇ¿ÕÕ»£¬Òç³ö */
-                *e=S->data[S->top2++]; /* ½«Õ»2µÄÕ»¶¥ÔªËØ³öÕ» */
-        }
-        return OK;
+		if (stackNumber==1) 
+		{
+				if (S->top1==-1) 
+						return ERROR; /* Ëµï¿½ï¿½Õ»1ï¿½Ñ¾ï¿½ï¿½Ç¿ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ */
+				*e=S->data[S->top1--]; /* ï¿½ï¿½Õ»1ï¿½ï¿½Õ»ï¿½ï¿½Ôªï¿½Ø³ï¿½Õ» */
+		}
+		else if (stackNumber==2)
+		{ 
+				if (S->top2==MAXSIZE) 
+						return ERROR; /* Ëµï¿½ï¿½Õ»2ï¿½Ñ¾ï¿½ï¿½Ç¿ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½ */
+				*e=S->data[S->top2++]; /* ï¿½ï¿½Õ»2ï¿½ï¿½Õ»ï¿½ï¿½Ôªï¿½Ø³ï¿½Õ» */
+		}
+		return OK;
 }
 
 Status StackTraverse(SqDoubleStack S)
 {
-        int i;
-        i=0;
-        while(i<=S.top1)
-        {
-                visit(S.data[i++]);
-        }
-        i=S.top2;
-        while(i<MAXSIZE)
-        {
-                visit(S.data[i++]);
-        }
-        printf("\n");
-        return OK;
+		int i;
+		i=0;
+		while(i<=S.top1)
+		{
+				visit(S.data[i++]);
+		}
+		i=S.top2;
+		while(i<MAXSIZE)
+		{
+				visit(S.data[i++]);
+		}
+		printf("\n");
+		return OK;
 }
 
 int main()
 {
-        int j;
-        SqDoubleStack s;
-        int e;
-        if(InitStack(&s)==OK)
-        {
-                for(j=1;j<=5;j++)
-                        Push(&s,j,1);
-                for(j=MAXSIZE;j>=MAXSIZE-2;j--)
-                        Push(&s,j,2);
-        }
+		int j;
+		SqDoubleStack s;
+		int e;
+		if(InitStack(&s)==OK)
+		{
+				for(j=1;j<=5;j++)
+						Push(&s,j,1);
+				for(j=MAXSIZE;j>=MAXSIZE-2;j--)
+						Push(&s,j,2);
+		}
 
-        printf("Õ»ÖÐÔªËØÒÀ´ÎÎª£º");
-        StackTraverse(s);
+		printf("Õ»ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
+		StackTraverse(s);
 
-        printf("µ±Ç°Õ»ÖÐÔªËØÓÐ£º%d \n",StackLength(s));
+		printf("ï¿½ï¿½Ç°Õ»ï¿½ï¿½Ôªï¿½ï¿½ï¿½Ð£ï¿½%d \n",StackLength(s));
 
-        Pop(&s,&e,2);
-        printf("µ¯³öµÄÕ»¶¥ÔªËØ e=%d\n",e);
-        printf("Õ»¿Õ·ñ£º%d(1:¿Õ 0:·ñ)\n",StackEmpty(s));
+		Pop(&s,&e,2);
+		printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ»ï¿½ï¿½Ôªï¿½ï¿½ e=%d\n",e);
+		printf("Õ»ï¿½Õ·ï¿½%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)\n",StackEmpty(s));
 
-        for(j=6;j<=MAXSIZE-2;j++)
-                Push(&s,j,1);
+		for(j=6;j<=MAXSIZE-2;j++)
+				Push(&s,j,1);
 
-        printf("Õ»ÖÐÔªËØÒÀ´ÎÎª£º");
-        StackTraverse(s);
+		printf("Õ»ï¿½ï¿½Ôªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½");
+		StackTraverse(s);
 
-        printf("Õ»Âú·ñ£º%d(1:·ñ 0:Âú)\n",Push(&s,100,1));
+		printf("Õ»ï¿½ï¿½ï¿½ï¿½%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)\n",Push(&s,100,1));
 
-        
-        ClearStack(&s);
-        printf("Çå¿ÕÕ»ºó£¬Õ»¿Õ·ñ£º%d(1:¿Õ 0:·ñ)\n",StackEmpty(s));
-        
-        return 0;
+		
+		ClearStack(&s);
+		printf("ï¿½ï¿½ï¿½Õ»ï¿½ï¿½Õ»ï¿½Õ·ï¿½%d(1:ï¿½ï¿½ 0:ï¿½ï¿½)\n",StackEmpty(s));
+		
+		return 0;
 }

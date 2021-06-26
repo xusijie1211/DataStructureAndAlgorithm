@@ -1,4 +1,4 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -9,34 +9,34 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
-#define m 3 /*  BÊ÷µÄ½×£¬ÔÝÉèÎª3 */ 
-#define N 17 /*  Êý¾ÝÔªËØ¸öÊý */ 
-#define MAX 5 /*  ×Ö·û´®×î´ó³¤¶È+1  */
+#define m 3 /*  Bï¿½ï¿½ï¿½Ä½×£ï¿½ï¿½ï¿½ï¿½ï¿½Îª3 */ 
+#define N 17 /*  ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ */ 
+#define MAX 5 /*  ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ó³¤¶ï¿½+1  */
 
-typedef int Status;	/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */ 
+typedef int Status;	/* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½OKï¿½ï¿½ */ 
 
 typedef struct BTNode
 {
-	int keynum; /*  ½áµãÖÐ¹Ø¼ü×Ö¸öÊý£¬¼´½áµãµÄ´óÐ¡ */ 
-	struct BTNode *parent; /*  Ö¸ÏòË«Ç×½áµã */ 
-	struct Node /*  ½áµãÏòÁ¿ÀàÐÍ */ 
+	int keynum; /*  ï¿½ï¿½ï¿½ï¿½Ð¹Ø¼ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ */ 
+	struct BTNode *parent; /*  Ö¸ï¿½ï¿½Ë«ï¿½×½ï¿½ï¿½ */ 
+	struct Node /*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
 	{
-		 int key; /*  ¹Ø¼ü×ÖÏòÁ¿ */ 
-		 struct BTNode *ptr; /*  ×ÓÊ÷Ö¸ÕëÏòÁ¿ */ 
-		 int recptr; /*  ¼ÇÂ¼Ö¸ÕëÏòÁ¿ */ 
-	}node[m+1]; /*  key,recptrµÄ0ºÅµ¥ÔªÎ´ÓÃ */ 
-}BTNode,*BTree; /*  BÊ÷½áµãºÍBÊ÷µÄÀàÐÍ */ 
+		 int key; /*  ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
+		 struct BTNode *ptr; /*  ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
+		 int recptr; /*  ï¿½ï¿½Â¼Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
+	}node[m+1]; /*  key,recptrï¿½ï¿½0ï¿½Åµï¿½ÔªÎ´ï¿½ï¿½ */ 
+}BTNode,*BTree; /*  Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
 
 typedef struct
 {
-	BTNode *pt; /*  Ö¸ÏòÕÒµ½µÄ½áµã */ 
-	int i; /*  1..m£¬ÔÚ½áµãÖÐµÄ¹Ø¼ü×ÖÐòºÅ */ 
-	int tag; /*  1:²éÕÒ³É¹¦£¬O:²éÕÒÊ§°Ü */ 
-}Result; /*  BÊ÷µÄ²éÕÒ½á¹ûÀàÐÍ */ 
+	BTNode *pt; /*  Ö¸ï¿½ï¿½ï¿½Òµï¿½ï¿½Ä½ï¿½ï¿½ */ 
+	int i; /*  1..mï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ÐµÄ¹Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
+	int tag; /*  1:ï¿½ï¿½ï¿½Ò³É¹ï¿½ï¿½ï¿½O:ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ */ 
+}Result; /*  Bï¿½ï¿½ï¿½Ä²ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
 
-/*  ÔÚp->node[1..keynum].keyÖÐ²éÕÒi,Ê¹µÃp->node[i].key¡ÜK£¼p->node[i+1].key */ 
+/*  ï¿½ï¿½p->node[1..keynum].keyï¿½Ð²ï¿½ï¿½ï¿½i,Ê¹ï¿½ï¿½p->node[i].keyï¿½ï¿½Kï¿½ï¿½p->node[i+1].key */ 
 int Search(BTree p, int K)
 { 
 	int i=0,j;
@@ -46,19 +46,19 @@ int Search(BTree p, int K)
 	return i;
 }
 
-/*  ÔÚm½×BÊ÷TÉÏ²éÕÒ¹Ø¼ü×ÖK£¬·µ»Ø½á¹û(pt,i,tag)¡£Èô²éÕÒ³É¹¦£¬ÔòÌØÕ÷Öµ */ 
-/*  tag=1£¬Ö¸ÕëptËùÖ¸½áµãÖÐµÚi¸ö¹Ø¼ü×ÖµÈÓÚK£»·ñÔòÌØÕ÷Öµtag=0£¬µÈÓÚKµÄ  */
-/*  ¹Ø¼ü×ÖÓ¦²åÈëÔÚÖ¸ÕëPtËùÖ¸½áµãÖÐµÚiºÍµÚi+1¸ö¹Ø¼ü×ÖÖ®¼ä¡£ */
+/*  ï¿½ï¿½mï¿½ï¿½Bï¿½ï¿½Tï¿½Ï²ï¿½ï¿½Ò¹Ø¼ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½(pt,i,tag)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ */ 
+/*  tag=1ï¿½ï¿½Ö¸ï¿½ï¿½ptï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ðµï¿½iï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Öµï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµtag=0ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½ï¿½  */
+/*  ï¿½Ø¼ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ptï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ðµï¿½iï¿½Íµï¿½i+1ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½Ö®ï¿½ä¡£ */
 Result SearchBTree(BTree T, int K)
 { 
-	BTree p=T,q=NULL; /*  ³õÊ¼»¯£¬pÖ¸Ïò´ý²é½áµã£¬qÖ¸ÏòpµÄË«Ç×  */
+	BTree p=T,q=NULL; /*  ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½pÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬qÖ¸ï¿½ï¿½pï¿½ï¿½Ë«ï¿½ï¿½  */
 	Status found=FALSE;
 	int i=0;
 	Result r;
 	while(p&&!found)
 	{
-	 i=Search(p,K); /*  p->node[i].key¡ÜK<p->node[i+1].key  */
-	 if(i>0&&p->node[i].key==K) /*  ÕÒµ½´ý²é¹Ø¼ü×Ö */ 
+	 i=Search(p,K); /*  p->node[i].keyï¿½ï¿½K<p->node[i+1].key  */
+	 if(i>0&&p->node[i].key==K) /*  ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ */ 
 	   found=TRUE;
 	 else
 	 {
@@ -67,12 +67,12 @@ Result SearchBTree(BTree T, int K)
 	 }
 	}
 	r.i=i;
-	if(found) /*  ²éÕÒ³É¹¦  */
+	if(found) /*  ï¿½ï¿½ï¿½Ò³É¹ï¿½  */
 	{
 	 r.pt=p;
 	 r.tag=1;
 	}
-	else /*   ²éÕÒ²»³É¹¦£¬·µ»ØKµÄ²åÈëÎ»ÖÃÐÅÏ¢ */ 
+	else /*   ï¿½ï¿½ï¿½Ò²ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½Ä²ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Ï¢ */ 
 	{
 	 r.pt=q;
 	 r.tag=0;
@@ -80,11 +80,11 @@ Result SearchBTree(BTree T, int K)
 	return r;
 }
 
-/* ½«r->key¡¢rºÍap·Ö±ð²åÈëµ½q->key[i+1]¡¢q->recptr[i+1]ºÍq->ptr[i+1]ÖÐ */ 
+/* ï¿½ï¿½r->keyï¿½ï¿½rï¿½ï¿½apï¿½Ö±ï¿½ï¿½ï¿½ëµ½q->key[i+1]ï¿½ï¿½q->recptr[i+1]ï¿½ï¿½q->ptr[i+1]ï¿½ï¿½ */ 
 void Insert(BTree *q,int i,int key,BTree ap)
 { 
 	int j;
-	for(j=(*q)->keynum;j>i;j--) /*  ¿Õ³ö(*q)->node[i+1]  */
+	for(j=(*q)->keynum;j>i;j--) /*  ï¿½Õ³ï¿½(*q)->node[i+1]  */
 		(*q)->node[j+1]=(*q)->node[j];
 	(*q)->node[i+1].key=key;
 	(*q)->node[i+1].ptr=ap;
@@ -92,12 +92,12 @@ void Insert(BTree *q,int i,int key,BTree ap)
 	(*q)->keynum++;
 }
 
-/* ½«½áµãq·ÖÁÑ³ÉÁ½¸ö½áµã£¬Ç°Ò»°ë±£Áô£¬ºóÒ»°ëÒÆÈëÐÂÉú½áµãap */ 
+/* ï¿½ï¿½ï¿½ï¿½ï¿½qï¿½ï¿½ï¿½Ñ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ã£¬Ç°Ò»ï¿½ë±£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ap */ 
 void split(BTree *q,BTree *ap)
 { 
 	int i,s=(m+1)/2;
-	*ap=(BTree)malloc(sizeof(BTNode)); /*  Éú³ÉÐÂ½áµãap */ 
-	(*ap)->node[0].ptr=(*q)->node[s].ptr; /*  ºóÒ»°ëÒÆÈëap */ 
+	*ap=(BTree)malloc(sizeof(BTNode)); /*  ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ap */ 
+	(*ap)->node[0].ptr=(*q)->node[s].ptr; /*  ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ap */ 
 	for(i=s+1;i<=m;i++)
 	{
 		 (*ap)->node[i-s]=(*q)->node[i];
@@ -106,10 +106,10 @@ void split(BTree *q,BTree *ap)
 	}
 	(*ap)->keynum=m-s;
 	(*ap)->parent=(*q)->parent;
-	(*q)->keynum=s-1; /*  qµÄÇ°Ò»°ë±£Áô£¬ÐÞ¸Äkeynum */ 
+	(*q)->keynum=s-1; /*  qï¿½ï¿½Ç°Ò»ï¿½ë±£ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½keynum */ 
 }
 
-/* Éú³Éº¬ÐÅÏ¢(T,r,ap)µÄÐÂµÄ¸ù½áµã&T£¬Ô­TºÍapÎª×ÓÊ÷Ö¸Õë */ 
+/* ï¿½ï¿½ï¿½Éºï¿½ï¿½ï¿½Ï¢(T,r,ap)ï¿½ï¿½ï¿½ÂµÄ¸ï¿½ï¿½ï¿½ï¿½&Tï¿½ï¿½Ô­Tï¿½ï¿½apÎªï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ */ 
 void NewRoot(BTree *T,int key,BTree ap)
 { 
 	BTree p;
@@ -127,8 +127,8 @@ void NewRoot(BTree *T,int key,BTree ap)
 		(*T)->node[1].ptr->parent=*T;
 }
 
-/*  ÔÚm½×BÊ÷TÉÏ½áµã*qµÄkey[i]Óëkey[i+1]Ö®¼ä²åÈë¹Ø¼ü×ÖKµÄÖ¸Õër¡£ÈôÒýÆð */ 
-/*  ½áµã¹ý´ó,ÔòÑØË«Ç×Á´½øÐÐ±ØÒªµÄ½áµã·ÖÁÑµ÷Õû,Ê¹TÈÔÊÇm½×BÊ÷¡£ */
+/*  ï¿½ï¿½mï¿½ï¿½Bï¿½ï¿½Tï¿½Ï½ï¿½ï¿½*qï¿½ï¿½key[i]ï¿½ï¿½key[i+1]Ö®ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½Kï¿½ï¿½Ö¸ï¿½ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
+/*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ë«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½Òªï¿½Ä½ï¿½ï¿½ï¿½ï¿½Ñµï¿½ï¿½ï¿½,Ê¹Tï¿½ï¿½ï¿½ï¿½mï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ */
 void InsertBTree(BTree *T,int key,BTree q,int i)
 { 
 	BTree ap=NULL;
@@ -138,25 +138,25 @@ void InsertBTree(BTree *T,int key,BTree q,int i)
 	rx=key;
 	while(q&&!finished)
 	{
-		Insert(&q,i,rx,ap); /*  ½«r->key¡¢rºÍap·Ö±ð²åÈëµ½q->key[i+1]¡¢q->recptr[i+1]ºÍq->ptr[i+1]ÖÐ  */
+		Insert(&q,i,rx,ap); /*  ï¿½ï¿½r->keyï¿½ï¿½rï¿½ï¿½apï¿½Ö±ï¿½ï¿½ï¿½ëµ½q->key[i+1]ï¿½ï¿½q->recptr[i+1]ï¿½ï¿½q->ptr[i+1]ï¿½ï¿½  */
 		if(q->keynum<m)
-			finished=TRUE; /*  ²åÈëÍê³É */ 
+			finished=TRUE; /*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */ 
 		else
-		{ /*  ·ÖÁÑ½áµã*q */ 
+		{ /*  ï¿½ï¿½ï¿½Ñ½ï¿½ï¿½*q */ 
 			s=(m+1)/2;
 			rx=q->node[s].recptr;
-			split(&q,&ap); /*  ½«q->key[s+1..m],q->ptr[s..m]ºÍq->recptr[s+1..m]ÒÆÈëÐÂ½áµã*ap  */
+			split(&q,&ap); /*  ï¿½ï¿½q->key[s+1..m],q->ptr[s..m]ï¿½ï¿½q->recptr[s+1..m]ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½*ap  */
 			q=q->parent;
 			if(q)
-				i=Search(q,key); /*  ÔÚË«Ç×½áµã*qÖÐ²éÕÒrx->keyµÄ²åÈëÎ»ÖÃ  */
+				i=Search(q,key); /*  ï¿½ï¿½Ë«ï¿½×½ï¿½ï¿½*qï¿½Ð²ï¿½ï¿½ï¿½rx->keyï¿½Ä²ï¿½ï¿½ï¿½Î»ï¿½ï¿½  */
 		}
 	}
-	if(!finished) /*  TÊÇ¿ÕÊ÷(²ÎÊýq³õÖµÎªNULL)»ò¸ù½áµãÒÑ·ÖÁÑÎª½áµã*qºÍ*ap */ 
-		NewRoot(T,rx,ap); /*  Éú³Éº¬ÐÅÏ¢(T,rx,ap)µÄÐÂµÄ¸ù½áµã*T£¬Ô­TºÍapÎª×ÓÊ÷Ö¸Õë */ 
+	if(!finished) /*  Tï¿½Ç¿ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½qï¿½ï¿½ÖµÎªNULL)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½*qï¿½ï¿½*ap */ 
+		NewRoot(T,rx,ap); /*  ï¿½ï¿½ï¿½Éºï¿½ï¿½ï¿½Ï¢(T,rx,ap)ï¿½ï¿½ï¿½ÂµÄ¸ï¿½ï¿½ï¿½ï¿½*Tï¿½ï¿½Ô­Tï¿½ï¿½apÎªï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ */ 
 }
 
 
-void print(BTNode c,int i) /*  TraverseDSTable()µ÷ÓÃµÄº¯Êý  */
+void print(BTNode c,int i) /*  TraverseDSTable()ï¿½ï¿½ï¿½ÃµÄºï¿½ï¿½ï¿½  */
 {
 	printf("(%d)",c.node[i].key);
 }
@@ -173,13 +173,13 @@ int main()
 		if(!s.tag)
 			InsertBTree(&T,r[i],s.pt,s.i);
 	}
-	printf("\nÇëÊäÈë´ý²éÕÒ¼ÇÂ¼µÄ¹Ø¼ü×Ö: ");
+	printf("\nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½Â¼ï¿½Ä¹Ø¼ï¿½ï¿½ï¿½: ");
 	scanf("%d",&i);
 	s=SearchBTree(T,i);
 	if(s.tag)
 		print(*(s.pt),s.i);
 	else
-		printf("Ã»ÕÒµ½");
+		printf("Ã»ï¿½Òµï¿½");
 	printf("\n");
 
 	return 0;

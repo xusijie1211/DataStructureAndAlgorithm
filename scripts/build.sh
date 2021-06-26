@@ -11,20 +11,20 @@ ARGS=$(getopt -o j: --long jobs: -- "$@")
 eval set -- "$ARGS"
 while :
 do
-    case "$1" in
-        -j | --jobs)
-            BUILD_PROCESSES=$2
-            shift 2
-            ;;
-        --)
-            shift
-            break
-            ;;
-        *)
-            echo "Internal error!"
-            exit 1
-            ;;
-    esac
+	case "$1" in
+		-j | --jobs)
+			BUILD_PROCESSES=$2
+			shift 2
+			;;
+		--)
+			shift
+			break
+			;;
+		*)
+			echo "Internal error!"
+			exit 1
+			;;
+	esac
 done
 
 # clear old outputs.
@@ -42,20 +42,20 @@ pkgRelease=${releaseVersion##*_}
 make clean
 make -j$BUILD_PROCESSES $@
 if [ $? -ne 0 ]; then
-    echo -e "\\033[1;31m"
-    echo "Error occured while compiling. Stop!"
-    echo -e "\\033[0m"
-    exit 1
+	echo -e "\\033[1;31m"
+	echo "Error occured while compiling. Stop!"
+	echo -e "\\033[0m"
+	exit 1
 fi
 
 # build extra open source target.
 if [ -d extrabuild ]; then
-    echo -e "\\033[1;33m"
-    echo "Building some extra open source targets ..."
-    echo -e "\\033[0m"
-    pushd extrabuild
-    . extra-build.sh -j$BUILD_PROCESSES $@
-    popd
+	echo -e "\\033[1;33m"
+	echo "Building some extra open source targets ..."
+	echo -e "\\033[0m"
+	pushd extrabuild
+	. extra-build.sh -j$BUILD_PROCESSES $@
+	popd
 fi
 
 # make a package.
@@ -69,8 +69,8 @@ echo
 pushd ${pkgName}_tmp
 dpkg -e $TOPDIR/${pkgName}.deb
 if [ -d $TOPDIR/DEBIAN/ ]; then
-    cp -rf $TOPDIR/DEBIAN/ .
-    chmod +x DEBIAN/*
+	cp -rf $TOPDIR/DEBIAN/ .
+	chmod +x DEBIAN/*
 fi
 popd
 rm -f ${pkgName}.deb

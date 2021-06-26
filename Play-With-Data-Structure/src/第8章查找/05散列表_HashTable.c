@@ -1,4 +1,4 @@
-#include "stdio.h"    
+#include "stdio.h"	
 #include "stdlib.h"   
 #include "io.h"  
 #include "math.h"  
@@ -9,24 +9,24 @@
 #define TRUE 1
 #define FALSE 0
 
-#define MAXSIZE 100 /* ´æ´¢¿Õ¼ä³õÊ¼·ÖÅäÁ¿ */
+#define MAXSIZE 100 /* ï¿½æ´¢ï¿½Õ¼ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
 #define SUCCESS 1
 #define UNSUCCESS 0
-#define HASHSIZE 12 /* ¶¨ÒåÉ¢ÁÐ±í³¤ÎªÊý×éµÄ³¤¶È */
+#define HASHSIZE 12 /* ï¿½ï¿½ï¿½ï¿½É¢ï¿½Ð±ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½ */
 #define NULLKEY -32768 
 
-typedef int Status;	/* StatusÊÇº¯ÊýµÄÀàÐÍ,ÆäÖµÊÇº¯Êý½á¹û×´Ì¬´úÂë£¬ÈçOKµÈ */ 
+typedef int Status;	/* Statusï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Öµï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½OKï¿½ï¿½ */ 
 
 typedef struct
 {
-   int *elem; /* Êý¾ÝÔªËØ´æ´¢»ùÖ·£¬¶¯Ì¬·ÖÅäÊý×é */
-   int count; /*  µ±Ç°Êý¾ÝÔªËØ¸öÊý */
+   int *elem; /* ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø´æ´¢ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+   int count; /*  ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ôªï¿½Ø¸ï¿½ï¿½ï¿½ */
 }HashTable;
 
-int m=0; /* É¢ÁÐ±í±í³¤£¬È«¾Ö±äÁ¿ */
+int m=0; /* É¢ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½ */
 
-/* ³õÊ¼»¯É¢ÁÐ±í */
+/* ï¿½ï¿½Ê¼ï¿½ï¿½É¢ï¿½Ð±ï¿½ */
 Status InitHashTable(HashTable *H)
 {
 	int i;
@@ -38,32 +38,32 @@ Status InitHashTable(HashTable *H)
 	return OK;
 }
 
-/* É¢ÁÐº¯Êý */
+/* É¢ï¿½Ðºï¿½ï¿½ï¿½ */
 int Hash(int key)
 {
-	return key % m; /* ³ýÁôÓàÊý·¨ */
+	return key % m; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
 
-/* ²åÈë¹Ø¼ü×Ö½øÉ¢ÁÐ±í */
+/* ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ö½ï¿½É¢ï¿½Ð±ï¿½ */
 void InsertHash(HashTable *H,int key)
 {
-	int addr = Hash(key); /* ÇóÉ¢ÁÐµØÖ· */
-	while (H->elem[addr] != NULLKEY) /* Èç¹û²»Îª¿Õ£¬Ôò³åÍ» */
+	int addr = Hash(key); /* ï¿½ï¿½É¢ï¿½Ðµï¿½Ö· */
+	while (H->elem[addr] != NULLKEY) /* ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Í» */
 	{
-		addr = (addr+1) % m; /* ¿ª·Å¶¨Ö··¨µÄÏßÐÔÌ½²â */
+		addr = (addr+1) % m; /* ï¿½ï¿½ï¿½Å¶ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ */
 	}
-	H->elem[addr] = key; /* Ö±µ½ÓÐ¿ÕÎ»ºó²åÈë¹Ø¼ü×Ö */
+	H->elem[addr] = key; /* Ö±ï¿½ï¿½ï¿½Ð¿ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ */
 }
 
-/* É¢ÁÐ±í²éÕÒ¹Ø¼ü×Ö */
+/* É¢ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ò¹Ø¼ï¿½ï¿½ï¿½ */
 Status SearchHash(HashTable H,int key,int *addr)
 {
-	*addr = Hash(key);  /* ÇóÉ¢ÁÐµØÖ· */
-	while(H.elem[*addr] != key) /* Èç¹û²»Îª¿Õ£¬Ôò³åÍ» */
+	*addr = Hash(key);  /* ï¿½ï¿½É¢ï¿½Ðµï¿½Ö· */
+	while(H.elem[*addr] != key) /* ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Õ£ï¿½ï¿½ï¿½ï¿½Í» */
 	{
-		*addr = (*addr+1) % m; /* ¿ª·Å¶¨Ö··¨µÄÏßÐÔÌ½²â */
-		if (H.elem[*addr] == NULLKEY || *addr == Hash(key)) /* Èç¹ûÑ­»·»Øµ½Ô­µã */
-			return UNSUCCESS;	/* ÔòËµÃ÷¹Ø¼ü×Ö²»´æÔÚ */
+		*addr = (*addr+1) % m; /* ï¿½ï¿½ï¿½Å¶ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ */
+		if (H.elem[*addr] == NULLKEY || *addr == Hash(key)) /* ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½Øµï¿½Ô­ï¿½ï¿½ */
+			return UNSUCCESS;	/* ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ø¼ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	}
 	return SUCCESS;
 }
@@ -82,15 +82,15 @@ int main()
 	
 	result=SearchHash(H,key,&p);
 	if (result)
-		printf("²éÕÒ %d µÄµØÖ·Îª£º%d \n",key,p);
+		printf("ï¿½ï¿½ï¿½ï¿½ %d ï¿½Äµï¿½Ö·Îªï¿½ï¿½%d \n",key,p);
 	else
-		printf("²éÕÒ %d Ê§°Ü¡£\n",key);
+		printf("ï¿½ï¿½ï¿½ï¿½ %d Ê§ï¿½Ü¡ï¿½\n",key);
 
 	for(i=0;i<m;i++)
 	{
 		key=arr[i];
 		SearchHash(H,key,&p);
-		printf("²éÕÒ %d µÄµØÖ·Îª£º%d \n",key,p);
+		printf("ï¿½ï¿½ï¿½ï¿½ %d ï¿½Äµï¿½Ö·Îªï¿½ï¿½%d \n",key,p);
 	}
 
 	return 0;

@@ -1,6 +1,6 @@
-#include <stdio.h>    
+#include <stdio.h>	
 #include <string.h>
-#include <ctype.h>      
+#include <ctype.h>	  
 #include <stdlib.h>   
 #include <io.h>  
 #include <math.h>  
@@ -102,10 +102,10 @@ void SelectSort(SqList *L)
 	{ 
 		min = i;						/* 将当前下标定义为最小值下标 */
 		for (j = i+1;j<=L->length;j++)/* 循环之后的数据 */
-        {
+		{
 			if (L->r[min]>L->r[j])	/* 如果有小于当前最小值的关键字 */
-                min = j;				/* 将此关键字的下标赋值给min */
-        }
+				min = j;				/* 将此关键字的下标赋值给min */
+		}
 		if(i!=min)						/* 若min不等于i，说明找到最小值，交换 */
 			swap(L,i,min);				/* 交换L->r[i]与L->r[min]的值 */
 	}
@@ -236,7 +236,7 @@ void MSort(int SR[],int TR1[],int s, int t)
 /* 对顺序表L作归并排序 */
 void MergeSort(SqList *L)
 { 
- 	MSort(L->r,L->r,1,L->length);
+	 MSort(L->r,L->r,1,L->length);
 }
 
 /* 非递归法 */
@@ -248,7 +248,7 @@ void MergePass(int SR[],int TR[],int s,int n)
 	while(i <= n-2*s+1)
 	{/* 两两归并 */
 		Merge(SR,TR,i,i+s-1,i+2*s-1);
-		i=i+2*s;        
+		i=i+2*s;		
 	}
 	if(i<n-s+1) /* 归并最后两个序列 */
 		Merge(SR,TR,i,i+s-1,n);
@@ -261,13 +261,13 @@ void MergePass(int SR[],int TR[],int s,int n)
 void MergeSort2(SqList *L)
 {
 	int* TR=(int*)malloc(L->length * sizeof(int));/* 申请额外空间 */
-    int k=1;
+	int k=1;
 	while(k<L->length)
 	{
 		MergePass(L->r,TR,k,L->length);
 		k=2*k;/* 子序列长度加倍 */
 		MergePass(TR,L->r,k,L->length);
-		k=2*k;/* 子序列长度加倍 */       
+		k=2*k;/* 子序列长度加倍 */	   
 	}
 }
 
@@ -380,7 +380,7 @@ int main()
    SqList l0,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
    
    for(i=0;i<N;i++)
-     l0.r[i+1]=d[i];
+	 l0.r[i+1]=d[i];
    l0.length=N;
    l1=l2=l3=l4=l5=l6=l7=l8=l9=l10=l0;
    printf("排序前:\n");
@@ -431,7 +431,7 @@ int main()
    print(l10);
 
 
-    /*大数据排序*/
+	/*大数据排序*/
 	/* 
 	srand(time(0));  
 	int Max=10000;
